@@ -15,6 +15,6 @@ class Horse < ApplicationRecord
   validates :character, inclusion: { in: CHARACTERS }
   validates :required_level, numericality: { only_integer: true }
   validates :monthly_price, numericality: { only_integer: true }
-  has_attachments :photos, maximum: 5
+  has_attachment :photos, maximum: 5
 
 end
