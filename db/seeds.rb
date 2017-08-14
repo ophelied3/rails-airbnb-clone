@@ -11,7 +11,7 @@ User.destroy_all
 
 puts "Début du Seed"
 puts "Génération d'un user"
-user1 = User.new(last_name: "Yeah", first_name:"Nay", email:"yeahornay@yeahornay.com", birth_date: Date.new(2004,4,12), sexe: "Homme", level: 5, password: "coucou")
+user1 = User.new(last_name: "Yeah", first_name:"Nay", email:"yeahornay@yeahornay.com", birth_date: Date.new(2004,4,12), sexe: "Homme", level: 5, password: "coucou", photo_url: "https://www.fillmurray.com/300/300")
 user1.save!
 puts "Fin de génération d'user"
 
