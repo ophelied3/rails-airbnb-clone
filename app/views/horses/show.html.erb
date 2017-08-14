@@ -21,5 +21,8 @@
       </div>
     </div>
   </div>
+  <% if current_user == @horse.user %>
+    <p> <%= link_to "Editer", edit_horse_path, class: "btn btn-primary" %>
+  <%end%>
   <p> <%= link_to "Retourner à l'index", horses_path, class:"btn btn-primary" %></p>
 </div>

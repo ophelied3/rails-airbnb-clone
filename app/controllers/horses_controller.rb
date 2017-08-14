@@ -28,9 +28,8 @@ class HorsesController < ApplicationController
   end
 
   def update
-    @horse = Horse.new(horse_params)
-    if @horse.update!
-      redirect_to @horse
+    if @horse.update(horse_params)
+      redirect_to horses_path
     else
       render :edit
     end
