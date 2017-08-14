@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="profile">
+    <div class="main text-center">
+      <div class="main-content">
+        <h2><%= @horse.title.capitalize %><h2>
+        <%= cl_image_tag @horse.photos.path, width: 200, height: 300, crop: :fill %>
+        <h3> <%= @horse.name.capitalize %></h3>
+        <h3>Proprietaire: <%= @horse.user.first_name.capitalize + " " + @horse.user.last_name.capitalize %></h3>
+      </div>
+    </div>
+    <div class="description">
+      <div class="description-content">
+        <p><%= @horse.description %></p>
+        <p>Le cheval est dispo ici: <%= @horse.address %></p>
+        <p>Le cheval est né le : <%= @horse.birth_date %></p>
+        <p>C'est un: <%= @horse.sexe%></p>
+        <p>Il est de la race: <%= @horse.race %></p>
+        <p>Il peut faire: <%= @horse.disciplines %></p>
+        <p>Il est plutot: <%= @horse.character %> </p>
+        <p>ICI FORMULAIRE DE RESERVATION</p>
+      </div>
+    </div>
+  </div>
+  <p> <%= link_to "Retourner à l'index", horses_path, class:"btn btn-primary" %></p>
+</div>
