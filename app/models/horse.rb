@@ -11,7 +11,7 @@ class Horse < ApplicationRecord
   validates :name, :address, :title, :birth_date, presence: true
   validates :sexe, inclusion: { in: %w(Etalon Hongre Jument) }
   validates :race, inclusion: { in: RACES }
-  validates :displine, inclusion: { in: DISCIPLINES }
+  validates :disciplines, inclusion: { in: DISCIPLINES }
   validates :character, inclusion: { in: CHARACTERS }
   validates :required_level, numericality: { only_integer: true }
   validates :monthly_price, numericality: { only_integer: true }

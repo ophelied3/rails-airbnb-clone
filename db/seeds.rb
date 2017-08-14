@@ -30,7 +30,7 @@ photos_url = ["https://images.pexels.com/photos/257573/pexels-photo-257573.jpeg?
 
 puts "Génération des chevaux"
 for i in (0..7) do
-  Horse.new(name:name[i], address: address[i], description: description[i], title: title[i], birth_date: birth_date[i], sexe: sexe.sample, race: race.sample, disciplines: disciplines.sample(rand(1..3)), character: character.sample, required_level: rand(0..9), monthly_price: rand(50..300), user_id: user1.id, photos_url: photos_url[i] )
+  Horse.new(name:name[i], address: address[i], description: description[i], title: title[i], birth_date: birth_date[i], sexe: sexe.sample, race: race.sample, disciplines: disciplines.sample, character: character.sample, required_level: rand(0..9), monthly_price: rand(50..300), user_id: user1.id, photos_url: photos_url[i]).save!
   puts "Cheval #{i+1} créé"
 end
 puts "Fin du Seed"

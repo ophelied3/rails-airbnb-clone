@@ -1,0 +1,16 @@
+<%= render 'shared/search_bar' %>
+<div class="container">
+  <h1>Nos chevaux disponibles</h1>
+  <div class="row">
+    <% @horses.each do |horse| %>
+        <div class="col-xs-12 col-sm-4">
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+           url('<%= cl_image_path horse.photos.path, height: 300, width: 400, crop: :fill %>')">
+            <div class="card-description">
+              <h2><%= horse.title.capitalize %></h2>
+            </div>
+            <%= link_to "See details", horse, class:"card-link"%>
+          </div>
+        </div>
+    <% end %>
+</div>
