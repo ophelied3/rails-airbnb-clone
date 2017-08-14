@@ -1,0 +1,17 @@
+<h1>Votre profil</h1>
+
+<%= cl_image_tag @user.photo.path, id: "user_pic"  %>
+
+<h3>Nom</h3><%= @user.last_name %>
+<h3>Prénom</h3> <%= @user.last_name %>
+<h3>Votre adresse email</h3> <%= @user.last_name %>
+<h3>Date de naissance</h3><%= @user.birth_date %>
+<h3>Riding Skills</h3><%= @user.level %><p>galop</p>
+<h3>Genre</h3><%if @user.sexe == "Homme" %>
+<%= "Masculin" %>
+<% else %>
+<%= "Féminin" %>
+<% end %>
+
+<h3>Membre depuis</h3> <%= @user.created_at %>
+
