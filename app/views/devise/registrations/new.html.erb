@@ -1,22 +1,38 @@
-<h2>Sign up</h2>
+<div class="container">
+  <h2>Sign up</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :first_name %>
-    <%= f.input :last_name %>
-    <%= f.input :birth_date %>
-    <%= f.input :sexe %>
-    <%= f.input :level %>
-    <%= f.input :password_confirmation, required: true %>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :first_name, label: "Prénom" %>
+          <%= f.input :last_name, label: "Nom" %>
+          <%= f.input :sexe, collection: %w(Femme Homme) %>
+          <%= f.input :birth_date, label: "Date de naissance", as: :string %>
+          <%= f.input :level, label: "Galop", input_html: { min: '0', max: '9' } %>
+          <%= f.input :email, required: true, autofocus: true %>
+          <%= f.input :password, required: true, hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length), label: "Mot de passe" %>
+          <%= f.input :password_confirmation, required: true, label: "Confirmation du mot de passe" %>
+          <%= f.input :photo, as: :attachinary, label: "Photo de profil" %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Sign up" %>
+        </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+
+    </div>
   </div>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
+
+<%= content_for :after_js do %>
+  <script>
+    $('#user_birth_date').dateDropper();
+  </script>
 <% end %>
-
-<%= render "devise/shared/links" %>
