@@ -11,7 +11,7 @@
       <%= f.input :first_name, label: "Prénom" %>
       <%= f.input :last_name, label: "Nom" %>
       <%= f.input :sexe, collection: %w(Femme Homme) %>
-      <%= f.input :birth_date, label: "Date de naissance", as: :string %>
+      <%= f.input :birth_date, label: "Date de naissance" %>
       <%= f.input :level, label: "Galop", input_html: { min: '0', max: '9' } %>
       <%= f.input :email, required: true, autofocus: true %>
 
@@ -39,8 +39,4 @@
   </div>
 </div>
 
-<%= content_for :after_js do %>
-  <script>
-    $('#user_birth_date').dateDropper();
-  </script>
-<% end %>
+
