@@ -1,16 +1,39 @@
 <%= render 'shared/search_bar' %>
-<div class="container">
-  <h1>Nos chevaux disponibles</h1>
-  <div class="row">
-    <% @horses.each do |horse| %>
-        <div class="col-xs-12 col-sm-4">
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-           url('<%= cl_image_path horse.photos.path, height: 300, width: 400, crop: :fill %>')">
-            <div class="card-description">
-              <h2><%= horse.title.capitalize %></h2>
+
+<div class="content">
+  <div class="container">
+  <h1 class = "text-center" >Nos beaux chevaux</h1>
+    <div class ="row">
+      <div class="col-xs-6">
+
+        <div class ="row">
+          <% @horses.each do |horse| %>
+            <div class="col-xs-12 col-sm-6">
+              <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+               url('<%= cl_image_path horse.photos.path, height: 300, width: 400, crop: :fill %>')">
+                <div class="card-description">
+                  <h2><%= horse.name.capitalize %></h2>
+                  <p><%= horse.title.capitalize %></p>
+                </div>
+                <%= link_to "See details", horse, class:"card-link"%>
+              </div>
             </div>
-            <%= link_to "See details", horse, class:"card-link"%>
-          </div>
+          <% end %>
         </div>
-    <% end %>
+      </div>
+
+      <div class="col-xs-6">
+        <div id="map">
+          <form class="form-inline text-center target">
+          <label class="sr-only" for="inlineFormInput">Address</label>
+          <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="21, rue Fernand Marin">
+          <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          <script src="https://maps.googleapis.com/maps/api/js"></script>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
+

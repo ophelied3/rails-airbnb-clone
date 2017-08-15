@@ -1,0 +1,12 @@
+#map {
+  height: 100vh;
+  position: sticky !important;
+  top: 0;
+  flex-shrink: 0;
+
+}
+
+.content {
+  display: flex;
+  align-items: stretch;
+}
