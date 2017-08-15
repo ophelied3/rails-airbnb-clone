@@ -1,3 +1,7 @@
+<% content_for(:title_tag) do %>
+  Fiche cheval: <%= @horse.name %>
+<% end %>
+
 <div class="show-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
          url('<%= cl_image_path @horse.horse_pic.path, height: 900, width: 1000, crop: :fill %>'); background-position: center;">
   <div class="banner-content">
