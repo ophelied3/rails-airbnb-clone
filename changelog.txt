@@ -1,0 +1,20 @@
+Changelog - Horse Model, Controller, Views -> arnaudaprahamian
+* -> Indique les Nouveau fichier
+*!* -> Indique les modification essentiel
+
+1er commit: ["horses_controller.rb" - "_edit_form.html.erb"*]
+- Creation d'un partiel "edit_form", separation du formulaire de creation et d'edition, retrait de l'ajout de photos
+(pose probleme avec atachinary)
+- Update/Edit fonctionnel
+
+2eme commit: ["horse.rb" - "_edit_form.html.erb" - "horses_controller.rb"- "index.html.erb"*!* - "show.html.erb"!*! _new_form.html.erb"!*! - "DB.seed"!*!]
+
+Model Horse:
+Ajout d'un champ supplementaire pour gere les photos non-essentiel (celle non afficher dans la recherche) [horse_pic]
+Ajout d'une validation pour la photos principal (celle qui est afficher dans la recherche) [photos]
+
+toutes les views:
+Modification essentiel pour tenir compte des changement du model!
+
+SEED:
+ATTENTION le seed a changer ! il faudra imperativement le relancer !
