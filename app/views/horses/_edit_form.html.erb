@@ -1,0 +1,17 @@
+<div class="container">
+    <%= simple_form_for @horse do |f| %>
+    <%= f.error_notification %>
+    <%= f.input :name, label:"Nom du cheval:" %>
+    <%= f.input :address, label: "Ou se trouve votre cheval ?" %>
+    <%= f.input :description, label: "Decrivez votre cheval:" %>
+    <%= f.input :title, label: "Donnez un nom a votre annonce:" %>
+    <%= f.input :birth_date, label: "Selectionner la date de naissance:" %>
+    <%= f.input :sexe, collection: ["Hongre", "Etalon", "Jument"]  %>
+    <%= f.input :race, collection: Horse::RACES, prompt: "Choose one" %>
+    <%= f.input :disciplines, collection: Horse::DISCIPLINES, prompt: "Choose one" %>
+    <%= f.input :character, collection: Horse::CHARACTERS, prompt: "Choose one" %>
+    <%= f.input :monthly_price, label: "tarif de l'abonnement" %>
+    <%= f.input :required_level, label: "niveau requis" %>
+    <%= f.button :submit, class:"btn btn-primary"%>
+    <% end %>
+</div>

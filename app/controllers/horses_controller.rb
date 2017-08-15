@@ -28,7 +28,7 @@ class HorsesController < ApplicationController
   end
 
   def update
-    if @horse.update(horse_params)
+    if Horse.update(horse_params)
       redirect_to horses_path
     else
       render :edit
@@ -44,7 +44,7 @@ class HorsesController < ApplicationController
   private
 
   def horse_params
-    params.require(:horse).permit(:name, :description, :photos, :title, :birth_date, :address, :sexe, :race, :disciplines, :character, :required_level, :monthly_price)
+    params.require(:horse).permit(:name, :description, :photos, :title, :birth_date, :address, :sexe, :race, :disciplines, :character, :required_level, :monthly_price, :user_id)
   end
 
 end
