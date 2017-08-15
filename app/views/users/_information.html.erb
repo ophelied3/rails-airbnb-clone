@@ -1,17 +1,21 @@
 <div class ="page-container">
 <div class="tabs">
-  <a class="tab active" href="#">
-    <p>Your information</p>
-  </a>
+  <%= form_tag(@user, :method => "get", role: "form") do %>
+    <%= text_field_tag :information, params[:information], class: "hidden", value: "information" %>
+    <%= submit_tag "Mes informations", class: 'tab active'%>
+  <%end%>
 
-  <a class="tab" href="#">
-    <p>Mes bookings</p>
-  </a>
+  <%= form_tag(@user, :method => "get", role: "form") do %>
+    <%= text_field_tag :historique, params[:historique], class: "hidden", value: "historique" %>
+    <%= submit_tag "Mes bookings", class: 'tab'%>
+  <%end%>
 
-  <a class="tab" href="#">
-    <p>Mes chevaux</p>
-  </a>
-</div>
+  <%= form_tag(@user, :method => "get", role: "form") do %>
+    <%= text_field_tag :chevaux, params[:chevaux], class: "hidden", value: "chevaux" %>
+    <%= submit_tag "Mes Chevaux", class: 'tab'%>
+  <%end%>
+
+  </div>
 
   <div class="container">
     <div class="row align-items-center">
