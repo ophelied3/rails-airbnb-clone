@@ -1,4 +1,6 @@
 <div class="container">
+
+
   <div class="profile">
     <div class="main text-center">
       <div class="main-content">
@@ -8,6 +10,7 @@
         <h3>Proprietaire: <%= @horse.user.first_name.capitalize + " " + @horse.user.last_name.capitalize %></h3>
       </div>
     </div>
+
     <div class="description">
       <div class="description-content">
         <p><%= @horse.description %></p>
@@ -30,4 +33,5 @@
     <p> <%= link_to "Editer", edit_horse_path, class: "btn btn-primary" %>
   <%end%>
   <p> <%= link_to "Retourner à l'index", horses_path, class:"btn btn-primary" %></p>
+
 </div>
