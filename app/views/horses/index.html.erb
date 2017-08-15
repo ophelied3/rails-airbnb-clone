@@ -6,7 +6,10 @@
       <div class="col-xs-6">
 
         <div class ="row">
-          <% @horses.each do |horse| %>
+          <% if @horse_search.empty? %>
+            <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+          <%end%>
+          <% @horse_search.each do |horse| %>
             <div class="col-xs-12 col-sm-6">
               <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
                url('<%= cl_image_path horse.horse_pic.path, height: 300, width: 400, crop: :fill %>')">
@@ -33,4 +36,3 @@
     </div>
   </div>
 </div>
-
