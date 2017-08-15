@@ -1,11 +1,10 @@
 class HorsesController < ApplicationController
-
+  before_action :find_horse, only: [:show, :edit, :update, :destroy]
   def index
     @horses = Horse.all
   end
 
   def show
-    @horse = Horse.find(params[:id])
     @booking = Booking.new
   end
 
@@ -24,11 +23,9 @@ class HorsesController < ApplicationController
   end
 
   def edit
-    @horse = Horse.find(params[:id])
   end
 
   def update
-    @horse = Horse.find(params[:id])
     if @horse.update(horse_params)
       redirect_to horses_path
     else
@@ -37,12 +34,15 @@ class HorsesController < ApplicationController
   end
 
   def destroy
-    @horse = Horse.find(params[:id])
     @horse.destroy
     redirect_to horses_path
   end
 
   private
+
+  def find_horse
+    @horse = Horse.find(params[:id])
+  end
 
   def horse_params
     params.require(:horse).permit(:name, :description, :title, :birth_date, :address, :sexe, :race, :disciplines, :character, :required_level, :monthly_price, :horse_pic, photos: [])

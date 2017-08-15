@@ -1,4 +1,6 @@
-Changelog - Horse Model, Controller, Views -> arnaudaprahamian
+Changelog:
+
+Horse Model, Controller, Views -> arnaudaprahamian
 * -> Indique les Nouveau fichier
 *!* -> Indique les modification essentiel
 
@@ -18,3 +20,8 @@ Modification essentiel pour tenir compte des changement du model!
 
 SEED:
 ATTENTION le seed a changer ! il faudra imperativement le relancer !
+
+Horse Search -> arnaudaprahamian
+
+1er commit: [Horses_Controller.rb]
+Petite refacto du controller
