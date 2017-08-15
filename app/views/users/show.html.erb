@@ -1,6 +1,10 @@
 <h1>Votre profil</h1>
 
+<% if @user.facebook_picture_url == nil %>
 <%= cl_image_tag @user.photo.path, id: "user_pic"  %>
+<% else %>
+<%= image_tag @user.facebook_picture_url, id: "user_pic" %>
+<% end %>
 
 <h3>Nom</h3><%= @user.last_name %>
 <h3>Prénom</h3> <%= @user.last_name %>

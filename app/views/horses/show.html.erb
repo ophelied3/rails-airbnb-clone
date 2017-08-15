@@ -3,7 +3,7 @@
     <div class="main text-center">
       <div class="main-content">
         <h2><%= @horse.title.capitalize %><h2>
-        <%= cl_image_tag @horse.photos.path, width: 200, height: 300, crop: :fill %>
+        <%= cl_image_tag @horse.horse_pic.path, width: 200, height: 300, crop: :fill %>
         <h3> <%= @horse.name.capitalize %></h3>
         <h3>Proprietaire: <%= @horse.user.first_name.capitalize + " " + @horse.user.last_name.capitalize %></h3>
       </div>
@@ -21,5 +21,13 @@
       </div>
     </div>
   </div>
+  <div class="morephotos">
+    <% @horse.photos.each do |photo| %>
+    	<%= cl_image_tag(photo.path, { size: '125x125', crop: :fit }) %>
+    <% end %>
+  </div>
+  <% if current_user == @horse.user %>
+    <p> <%= link_to "Editer", edit_horse_path, class: "btn btn-primary" %>
+  <%end%>
   <p> <%= link_to "Retourner à l'index", horses_path, class:"btn btn-primary" %></p>
 </div>

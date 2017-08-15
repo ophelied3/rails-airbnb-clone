@@ -1,5 +1,4 @@
 <%= render 'shared/search_bar' %>
-
 <div class="content">
   <div class="container">
   <h1 class = "text-center" >Nos beaux chevaux</h1>
@@ -10,7 +9,7 @@
           <% @horses.each do |horse| %>
             <div class="col-xs-12 col-sm-6">
               <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-               url('<%= cl_image_path horse.photos.path, height: 300, width: 400, crop: :fill %>')">
+               url('<%= cl_image_path horse.horse_pic.path, height: 300, width: 400, crop: :fill %>')">
                 <div class="card-description">
                   <h2><%= horse.name.capitalize %></h2>
                   <p><%= horse.title.capitalize %></p>
@@ -21,7 +20,6 @@
           <% end %>
         </div>
       </div>
-
       <div class="col-xs-6">
         <div id="map">
           <form class="form-inline text-center target">
@@ -32,7 +30,6 @@
           <script src="https://maps.googleapis.com/maps/api/js"></script>
         </div>
       </div>
-
     </div>
   </div>
 </div>
