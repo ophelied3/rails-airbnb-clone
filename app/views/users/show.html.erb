@@ -1,21 +1,12 @@
-<h1>Votre profil</h1>
+<h1 class = "text-center">Votre profil</h1>
 
-<% if @user.facebook_picture_url == nil %>
-<%= cl_image_tag @user.photo.path, id: "user_pic"  %>
+<% if params[:information] %>
+  <%= render "information" %>
+<% elsif params[:historique] %>
+  <%= render "historique" %>
+<% elsif params[:chevaux] %>
+  <%= render "chevaux"%>
 <% else %>
-<%= image_tag @user.facebook_picture_url, id: "user_pic" %>
+  <%= render "information" %>
 <% end %>
-
-<h3>Nom</h3><%= @user.last_name %>
-<h3>Prénom</h3> <%= @user.last_name %>
-<h3>Votre adresse email</h3> <%= @user.last_name %>
-<h3>Date de naissance</h3><%= @user.birth_date %>
-<h3>Riding Skills</h3><%= @user.level %><p>galop</p>
-<h3>Genre</h3><%if @user.sexe == "Homme" %>
-<%= "Masculin" %>
-<% else %>
-<%= "Féminin" %>
-<% end %>
-
-<h3>Membre depuis</h3> <%= @user.created_at %>
 
