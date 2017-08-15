@@ -1,0 +1,47 @@
+<div class ="page-container">
+<div class="tabs">
+  <a class="tab active" href="#">
+    <p>Your information</p>
+  </a>
+
+  <a class="tab" href="#">
+    <p>Mes bookings</p>
+  </a>
+
+  <a class="tab" href="#">
+    <p>Mes chevaux</p>
+  </a>
+</div>
+
+  <div class="container">
+    <div class="row align-items-center">
+
+      <div class="col-xs-12 col-md-6">
+        <div class="profile-picture">
+          <% if @user.facebook_picture_url == nil %>
+          <%= cl_image_tag @user.photo.path, id: "user_pic"  %>
+          <% else %>
+          <%= image_tag @user.facebook_picture_url, id: "user_pic" %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-md-6">
+        <div class="profile_info">
+          <h4>Nom</h4><%= @user.last_name %>
+          <h4>Prénom</h4> <%= @user.last_name %>
+          <h4>Votre adresse email</h4> <%= @user.last_name %>
+          <h4>Date de naissance</h4><%= @user.birth_date %>
+          <h4>Riding Skills</h4><%= @user.level %><p>galop</p>
+          <h4>Genre</h4><%if @user.sexe == "Homme" %>
+          <%= "Masculin" %>
+          <% else %>
+          <%= "Féminin" %>
+          <% end %>
+          <h4>Membre depuis</h4> <%= @user.created_at %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

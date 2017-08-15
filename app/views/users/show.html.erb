@@ -1,21 +1,22 @@
-<h1>Votre profil</h1>
+<h1 class = "text-center">Votre profil</h1>
 
-<% if @user.facebook_picture_url == nil %>
-<%= cl_image_tag @user.photo.path, id: "user_pic"  %>
-<% else %>
-<%= image_tag @user.facebook_picture_url, id: "user_pic" %>
-<% end %>
+<h4 class ="text-center">Mes réservations précédentes </h4>
 
-<h3>Nom</h3><%= @user.last_name %>
-<h3>Prénom</h3> <%= @user.last_name %>
-<h3>Votre adresse email</h3> <%= @user.last_name %>
-<h3>Date de naissance</h3><%= @user.birth_date %>
-<h3>Riding Skills</h3><%= @user.level %><p>galop</p>
-<h3>Genre</h3><%if @user.sexe == "Homme" %>
-<%= "Masculin" %>
-<% else %>
-<%= "Féminin" %>
-<% end %>
+<%= @bookings.each do |booking| %>
+  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
+    <div class="card-category">Finished </div>
+    <div class="card-description">
+      <h2> </h2>
+      <p>Very cool city, the best</p>
+    </div>
+    <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
+  </div>
+<%end%>
 
-<h3>Membre depuis</h3> <%= @user.created_at %>
+
+
+
+
+
+
 
