@@ -1,2 +1,23 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(50,50,50,0.5) 0%, rgba(50,50,50,0.5) 50%), url('<%= image_path "background_cavalira.png" %>');">
+  <div class="banner-content">
+    <h1>Trouver une demi-pension</h1>
+    <p>N'aura jamais été aussi simple</p>
+    <a class="btn btn-danger btn-lg">Entrez dans l'écurie :)</a>
+  </div>
+</div>
+
+<div class="container">
+  <h1 class="text-center">Nos chevaux disponibles</h1>
+  <div class="row">
+    <% @horses.each do |horse| %>
+        <div class="col-xs-12 col-sm-4">
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+           url('<%= cl_image_path horse.horse_pic.path, height: 300, width: 400, crop: :fill %>')">
+            <div class="card-description">
+              <h2><%= horse.title.capitalize %></h2>
+            </div>
+            <%= link_to "See details", horse, class:"card-link"%>
+          </div>
+        </div>
+    <% end %>
+</div>
