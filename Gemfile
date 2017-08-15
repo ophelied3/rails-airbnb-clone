@@ -16,6 +16,7 @@ gem 'jquery-rails'
 gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
+gem 'validates_timeliness', '~> 4.0'
 
 gem 'cloudinary'
 gem 'attachinary', github: 'assembler/attachinary'

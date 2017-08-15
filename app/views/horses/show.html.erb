@@ -1,13 +1,16 @@
 <div class="container">
+
+
   <div class="profile">
     <div class="main text-center">
       <div class="main-content">
-        <h2><%= @horse.title.capitalize %><h2>
+        <h2><%= @horse.title.capitalize %></h2>
         <%= cl_image_tag @horse.photos.path, width: 200, height: 300, crop: :fill %>
         <h3> <%= @horse.name.capitalize %></h3>
         <h3>Proprietaire: <%= @horse.user.first_name.capitalize + " " + @horse.user.last_name.capitalize %></h3>
       </div>
     </div>
+
     <div class="description">
       <div class="description-content">
         <p><%= @horse.description %></p>
@@ -21,5 +24,7 @@
       </div>
     </div>
   </div>
+
   <p> <%= link_to "Retourner à l'index", horses_path, class:"btn btn-primary" %></p>
+
 </div>
