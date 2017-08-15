@@ -3,7 +3,7 @@
     <div class="main text-center">
       <div class="main-content">
         <h2><%= @horse.title.capitalize %><h2>
-        <%= cl_image_tag @horse.avatar.path, width: 200, height: 300, crop: :fill %>
+        <%= cl_image_tag @horse.horse_pic.path, width: 200, height: 300, crop: :fill %>
         <h3> <%= @horse.name.capitalize %></h3>
         <h3>Proprietaire: <%= @horse.user.first_name.capitalize + " " + @horse.user.last_name.capitalize %></h3>
       </div>
