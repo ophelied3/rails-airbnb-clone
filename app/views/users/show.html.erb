@@ -1,3 +1,7 @@
+<% content_for(:title_tag) do %>
+  Profil de <%= @user.first_name %>
+<% end %>
+
 <h1 class = "text-center">Votre profil</h1>
 
 <% if params[:information] %>
