@@ -1,37 +1,86 @@
+<div class="show-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+         url('<%= cl_image_path @horse.horse_pic.path, height: 900, width: 1000, crop: :fill %>'); background-position: center;">
+  <div class="banner-content">
+    <h1><%= @horse.title.capitalize %></h1>
+  </div>
+</div>
+
+
 <div class="container">
-
-
-  <div class="profile">
-    <div class="main text-center">
-      <div class="main-content">
-        <h2><%= @horse.title.capitalize %><h2>
-        <%= cl_image_tag @horse.horse_pic.path, width: 200, height: 300, crop: :fill %>
-        <h3> <%= @horse.name.capitalize %></h3>
-        <h3>Proprietaire: <%= @horse.user.first_name.capitalize + " " + @horse.user.last_name.capitalize %></h3>
+  <div class="row">
+    <div class="general">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-1">
+        <div class="resume">
+            <div class="user">
+              <% if @horse.user.facebook_picture_url == nil %>
+              <%= cl_image_tag @horse.user.photo.path, id: "user_pic", class: "avatar-extralarge"  %>
+              <% else %>
+              <%= image_tag @horse.user.facebook_picture_url, id: "user_pic", class: "avatar-extralarge" %>
+              <% end %>
+              <p><%= @horse.user.first_name %></p>
+            </div>
+            <div class="infos">
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              <p><%= @horse.address %></p>
+            </div>
+        </div>
       </div>
-    </div>
 
-    <div class="description">
-      <div class="description-content">
-        <p><%= @horse.description %></p>
-        <p>Le cheval est dispo ici: <%= @horse.address %></p>
-        <p>Le cheval est né le : <%= @horse.birth_date %></p>
-        <p>C'est un: <%= @horse.sexe%></p>
-        <p>Il est de la race: <%= @horse.race %></p>
-        <p>Il peut faire: <%= @horse.disciplines %></p>
-        <p>Il est plutot: <%= @horse.character %> </p>
-        <p>ICI FORMULAIRE DE RESERVATION</p>
+      <div class="col-xs-12 col-sm-4">
+        <div class="booking-new">
+          <%= render "bookings/form", horse: @horse, booking: @booking %>
+        </div>
       </div>
     </div>
   </div>
+</div>
+
+
+
+<div class="white-wrapper">
+  <div class="details">
+    <div class="container">
+      <h2>Le cheval</h2>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6">
+          <p>Nom : <%= @horse.name %></p>
+          <p>Âge : <%= @horse.birth_date %></p>
+          <p>Sexe : <%= @horse.sexe %></p>
+          <p>Race : <%= @horse.race %></p>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <p>Discipline : <%= @horse.disciplines %></p>
+          <p>Caractère : <%= @horse.character %></p>
+          <p>Niveau requis : Galop <%= @horse.required_level %></p>
+          <p>Prix de la demi-pension : <%= @horse.monthly_price %> € / mois</p>
+        </div>
+      </div>
+      <div class="row">
+        <p>Description :</p>
+        <p><%= @horse.description %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   <div class="morephotos">
     <% @horse.photos.each do |photo| %>
     	<%= cl_image_tag(photo.path, { size: '125x125', crop: :fit }) %>
     <% end %>
   </div>
+
   <% if current_user == @horse.user %>
-    <p> <%= link_to "Editer", edit_horse_path, class: "btn btn-primary" %>
+    <p> <%= link_to "Editer", edit_horse_path(@horse), class: "btn btn-primary" %>
   <%end%>
   <p> <%= link_to "Retourner à l'index", horses_path, class:"btn btn-primary" %></p>
 
-</div>
+
+
+
+
+
+
+
+
+
