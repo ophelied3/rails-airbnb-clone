@@ -7,9 +7,15 @@
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
+
+
     <% if user_signed_in? %>
 
+      <p class="notice navbar-wagon-item"><%= notice %></p>
+      <p class="alert navbar-wagon-item"><%= alert %></p>
       <!-- Links when logged in -->
+
+
       <%= link_to "Rechercher un cheval", "/horses", class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Ajouter une annonce", "/horses/new", class: "navbar-wagon-item navbar-wagon-link" %>
 
@@ -33,7 +39,7 @@
       </div>
     <% else %>
       <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item btn btn-danger btn-sm" %>
     <% end %>
   </div>
 
