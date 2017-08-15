@@ -4,11 +4,10 @@
         <div class="col-md-10 col-md-offset-1">
           <div class="form-section">
             <div class="row">
-                <form role="form">
+                <%= form_tag(horses_path, :method => "get", id: "search-form", role:'form') do %>
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label class="sr-only" for="location">Location</label>
-                      <input type="email" class="form-control" id="location" placeholder="Where ?">
+                      <%= text_field_tag :address, params[:address], class: "form-control", type:"address", label: "Location", placeholder: "where ?" %>
                     </div>
                   </div>
                   <div class="col-md-3">
@@ -30,9 +29,9 @@
                     </div>
                   </div>
                   <div class="col-md-2">
-                    <button type="submit" class="btn btn-default btn-primary">Search</button>
+                    <%= submit_tag "Search" %>
                   </div>
-                </form>
+                <% end %>
             </div>
           </div>
         </div>

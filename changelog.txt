@@ -25,3 +25,6 @@ Horse Search -> arnaudaprahamian
 
 1er commit: [Horses_Controller.rb]
 Petite refacto du controller
+
+Dernier commit:
+Modification du Controller, et des views!

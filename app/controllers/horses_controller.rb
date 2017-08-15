@@ -1,8 +1,14 @@
 class HorsesController < ApplicationController
   before_action :find_horse, only: [:show, :edit, :update, :destroy]
+  before_action :all_horse, only: [:index]
   skip_before_action :authenticate_user!, only: [:index, :show]
+  
   def index
-    @horses = Horse.all
+    if params[:address]
+      @horse_search = search(params[:address])
+      else
+      @horse_search = Horse.all.order('created_at DESC')
+    end
   end
 
   def show
@@ -28,7 +34,7 @@ class HorsesController < ApplicationController
 
   def update
     if @horse.update(horse_params)
-      redirect_to horses_path
+      redirect_to @horse
     else
       render :edit
     end
@@ -43,6 +49,18 @@ class HorsesController < ApplicationController
 
   def find_horse
     @horse = Horse.find(params[:id])
+  end
+
+  def all_horse
+    @horses = Horse.all
+  end
+
+  def search(search)
+    horse_search = []
+    @horses.each do |horse|
+      horse_search << horse if horse.address.downcase.include? params[:address].downcase
+    end
+    return horse_search
   end
 
   def horse_params

@@ -3,21 +3,18 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
-  def new
-    @booking = Booking.new
-    @horse = Horse.find(params[:horse_id])
-  end
-
   def create
     @horse = Horse.find(params[:horse_id])
     @booking = current_user.bookings.new(booking_params)
     @booking.horse = @horse
     @booking.price = @horse.monthly_price
 
+
+
     if @booking.save
-      redirect_to booking_path(@booking)
+      redirect_to @booking
     else
-      render :new
+      render 'horses/show'
     end
   end
 
