@@ -12,6 +12,8 @@
     <%= f.input :character, collection: Horse::CHARACTERS, prompt: "Choose one" %>
     <%= f.input :monthly_price, label: "tarif de l'abonnement" %>
     <%= f.input :required_level, label: "niveau requis" %>
+    <%= f.input :avatar, as: :attachinary %>
+    <%= f.input :photos, as: :attachinary, label: "Ajouter jusqu'a 5 photos supplementaire:" %>
     <%= f.button :submit, class:"btn btn-primary"%>
     <% end %>
 </div>
