@@ -9,6 +9,14 @@ class HorsesController < ApplicationController
       else
       @horse_search = Horse.all.order('created_at DESC')
     end
+
+    @horses = Horse.where.not(latitude: nil, longitude: nil)
+
+    @hash = Gmaps4rails.build_markers(@horses) do |horse, marker|
+      marker.lat horse.latitude
+      marker.lng horse.longitude
+      # marker.infowindow render_to_string(partial: "/flats/map_box", locals: { flat: flat })
+    end
   end
 
   def show
