@@ -4,6 +4,7 @@ class HorsesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
+
     if params[:location]
       @horse_search = search(params[:location], params[:rayon])
       else

@@ -1,15 +1,16 @@
 <%= render 'shared/search_bar' %>
+
 <div class="content">
   <div class="container">
-  <h1 class = "text-center" >Nos beaux chevaux</h1>
+  <h1 class = "text-center">Nos beaux chevaux</h1>
     <div class ="row">
       <div class="col-xs-6">
 
         <div class ="row">
           <% if @horse_search.empty? %>
-            <p>Aucune demi-pension près de <%= params[:location] %> dans un rayon de <%= params[:rayon]%> Km.</p>
+            <p>Nous n'avons trouvé aucune demi-pension dans un rayon de <%= params[:rayon]%>km autour de <%= params[:location] %>.</p>
           <%end%>
-          <% @horse_search.each do |horse| %>
+          <% @horse_search.first(8).each do |horse| %>
             <div class="col-xs-12 col-sm-6">
               <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
                url('<%= cl_image_path horse.horse_pic.path, height: 300, width: 400, crop: :fill %>')">
