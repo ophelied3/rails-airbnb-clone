@@ -2,7 +2,8 @@
   background: #E84A5F;
   display: flex;
   margin-top: 30px;
-  padding: 10px 10px 0 10px
+  margin-bottom: 30px;
+  padding: 12px 12px 0 12px
 }
 
 .tabs a {
@@ -27,8 +28,8 @@
   flex: 0 0 25%;
   text-align: center;
   padding: 20px 0;
-  padding-right: 30px;
-  padding-left: 30px;
+  padding-right: 40px;
+  padding-left: 40px;
 }
 .tab:first-child {
   border-radius: 10px 0 0 0;
