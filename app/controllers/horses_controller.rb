@@ -11,7 +11,7 @@ class HorsesController < ApplicationController
     if data[:location]
       search_data = {location: data[:location], rayon: data[:rayon], start_date: data[:start_date], end_date: data[:end_date]}
       @horse_search = search(search_data)
-      else
+    else
       @horse_search = Horse.all.order('created_at DESC')
     end
 

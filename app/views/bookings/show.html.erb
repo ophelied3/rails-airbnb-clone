@@ -1,2 +1,99 @@
-<%= @booking.start_date %>
-<%= @booking.end_date %>
+<h1 id="booking-show">Le demi-pension</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="booking-show">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-1">
+        <div class="booking-users">
+            <div class="user-horse">
+              <p>Le propriétaire :</p>
+              <% if @horse.user.facebook_picture_url == nil %>
+              <%= cl_image_tag @horse.user.photo.path, id: "user_pic", class: "avatar-extralarge"  %>
+              <% else %>
+              <%= image_tag @horse.user.facebook_picture_url, id: "user_pic", class: "avatar-extralarge" %>
+              <% end %>
+              <%= @horse.user.first_name %>
+            </div>
+            <div class="user-booking">
+              <p>Le demi-pensionnaire :</p>
+              <% if @booking.user.facebook_picture_url == nil %>
+              <%= cl_image_tag @booking.user.photo.path, id: "user_pic", class: "avatar-extralarge"  %>
+              <% else %>
+              <%= image_tag @booking.user.facebook_picture_url, id: "user_pic", class: "avatar-extralarge" %>
+              <% end %>
+              <%= @booking.user.first_name %>
+            </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <div class="booking-informations text-center">
+          <h3>Informations</h3>
+          <p>Date de début : <%= @booking.start_date %></p>
+          <p>Date de fin : <%= @booking.end_date %></p>
+          <p>Prix total : <%= @booking.price %> €</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3>Localisation</h3>
+<div id="map" style="width: 100%; height: 300px;"></div>
+
+<div class="white-wrapper">
+  <div class="horse-description">
+    <div class="container">
+      <h3>Le cheval</h3>
+      <div class="row">
+        <div class="col-xs-12 col-sm-4">
+          <p>Nom : <%= @horse.name %></p>
+          <p>Âge : <%= @horse.birth_date %></p>
+          <p>Sexe : <%= @horse.sexe %></p>
+          <p>Race : <%= @horse.race %></p>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <p>Discipline : <%= @horse.disciplines %></p>
+          <p>Caractère : <%= @horse.character %></p>
+          <p>Niveau requis : Galop <%= @horse.required_level %></p>
+          <p>Prix de la demi-pension : <%= @horse.monthly_price %> € / mois</p>
+        </div>
+      <div class="col-xs-12 col-sm-4">
+          <p><%= @horse.description %></p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<% if @booking.rating.nil? %>
+  <%= simple_form_for @booking do |f| %>
+    <%= f.input :rating, label: "Donnez une note au cheval :" %>
+    <%= f.button :submit, class:"btn btn-primary"%>
+  <% end %>
+<% else %>
+  <p>Note de la demi-pension : <%= @booking.rating %></p>
+<% end %>
+
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers([
+    {
+    "lat": <%= @booking.horse.latitude %>,
+    "lng": <%= @booking.horse.longitude %>,
+  }
+  ]);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+  });
+
+  <% end %>
+<% end %>
+
+
+
+
+
