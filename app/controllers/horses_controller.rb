@@ -4,9 +4,10 @@ class HorsesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    if params[:address]
-      @horse_search = search(params[:address])
-    else
+
+    if params[:location]
+      @horse_search = search(params[:location], params[:rayon])
+      else
       @horse_search = Horse.all.order('created_at DESC')
     end
 
@@ -63,12 +64,8 @@ class HorsesController < ApplicationController
     @horses = Horse.all
   end
 
-  def search(search)
-    horse_search = []
-    @horses.each do |horse|
-      horse_search << horse if horse.address.downcase.include? params[:address].downcase
-    end
-    return horse_search
+  def search(location, rayon)
+    return horse_search = Horse.near(location, rayon)
   end
 
   def horse_params
