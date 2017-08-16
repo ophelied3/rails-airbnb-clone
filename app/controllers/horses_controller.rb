@@ -4,6 +4,7 @@ class HorsesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
+    @horses = Horse.where.not(latitude: nil, longitude: nil)
     data = {}
     unless params["/horses"].nil?
       data = params["/horses"]
@@ -14,9 +15,8 @@ class HorsesController < ApplicationController
     else
       @horse_search = Horse.all.order('created_at DESC')
     end
-
-    @horses = Horse.where.not(latitude: nil, longitude: nil)
-    @hash = Gmaps4rails.build_markers(@horses) do |horse, marker|
+    
+    @hash = Gmaps4rails.build_markers(@horse_search) do |horse, marker|
       marker.lat horse.latitude
       marker.lng horse.longitude
       # marker.infowindow render_to_string(partial: "/flats/map_box", locals: { flat: flat })
