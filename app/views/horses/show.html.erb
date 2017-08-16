@@ -8,9 +8,9 @@
 
 <div class="container">
   <div class="row">
-    <div class="general">
+    <div class="header-booking">
       <div class="col-xs-12 col-sm-6 col-sm-offset-1">
-        <div class="resume">
+        <div class="header-details">
             <div class="user">
               <% if @horse.user.facebook_picture_url == nil %>
               <%= cl_image_tag @horse.user.photo.path, id: "user_pic", class: "avatar-extralarge"  %>
@@ -19,7 +19,7 @@
               <% end %>
               <h2><%= @horse.user.first_name %></h2>
             </div>
-            <div class="infos">
+            <div class="address">
               <h3><i class="fa fa-map-marker" aria-hidden="true"></i>    <%= @horse.address %></h3>
             </div>
         </div>
@@ -37,7 +37,7 @@
 
 
 <div class="white-wrapper">
-  <div class="details">
+  <div class="horse-description">
     <div class="container">
       <h3>Le cheval</h3>
       <div class="row">
