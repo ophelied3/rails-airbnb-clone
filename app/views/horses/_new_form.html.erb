@@ -1,18 +1,30 @@
-<div class="container">
-    <%= simple_form_for @horse do |f| %>
+<div class="form-horizontal">
+  <%= simple_form_for @horse do |f| %>
     <%= f.error_notification %>
-    <%= f.input :name, label: "Nom du cheval" %>
-    <%= f.input :address, label: "Où se trouve votre cheval ?" %>
-    <%= f.input :description, label: "Décrivez votre cheval" %>
-    <%= f.input :title, label: "Donnez un nom à votre annonce" %>
-    <%= f.input :birth_date, label: "Sélectionnez la date de naissance:" %>
-    <%= f.input :sexe, collection: ["Hongre", "Etalon", "Jument"]  %>
-    <%= f.input :race, collection: Horse::RACES, prompt: "Choose one" %>
-    <%= f.input :disciplines, collection: Horse::DISCIPLINES, prompt: "Choose one", label: "Discipline" %>
-    <%= f.input :character, collection: Horse::CHARACTERS, prompt: "Choose one", label: "Caractère" %>
-    <%= f.input :monthly_price, label: "Tarif de l'abonnement" %>
-    <%= f.input :required_level, label: "Niveau requis" %>
-    <%= f.input :horse_pic, as: :attachinary, value: "Ajouter" %>
-    <%= f.button :submit, class:"btn btn-primary"%>
-    <% end %>
+    <div class="form-group">
+      <div class="form-boite">
+        <h3 class="text-center">Présentez votre cheval</h3>
+        <%= f.input :name, label: "Nom du cheval:" %>
+        <%= f.input :address, label: "Où se trouve votre cheval ?" %>
+        <%= f.input :description, label: "Décrivez votre cheval" %>
+        <%= f.input :birth_date, label: "Sélectionnez la date de naissance" %>
+        <%= f.input :sexe, collection: ["Hongre", "Etalon", "Jument"]  %>
+        <%= f.input :race, collection: Horse.races, prompt: "Choose one", label: "Race" %>
+        <%= f.input :disciplines, collection: Horse.disciplines, prompt: "Choose one", label: "Discipline" %>
+        <%= f.input :character, collection: Horse.characters, prompt: "Choose one", label: "Caractère" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-boite">
+        <h3 class="text-center">Quelques infos sur votre annonce</h3>
+          <%= f.input :title, label: "Donnez un nom à votre annonce" %>
+          <%= f.input :monthly_price, label: "Tarif de l'abonnement" %>
+          <%= f.input :required_level, label: "Niveau requis" %>
+      </div>
+    </div>
+    <div class="text-center">
+      <%= f.input :horse_pic, as: :attachinary %>
+      <%= f.button :submit, class:"btn btn-primary", value: "Ajouter" %>
+    </div>
+  <% end %>
 </div>
