@@ -12,26 +12,25 @@
 
 <div class="container">
   <div class="row">
-    <div class="general">
+    <div class="header-booking">
       <div class="col-xs-12 col-sm-6 col-sm-offset-1">
-        <div class="resume">
+        <div class="header-details">
             <div class="user">
               <% if @horse.user.facebook_picture_url == nil %>
               <%= cl_image_tag @horse.user.photo.path, id: "user_pic", class: "avatar-extralarge"  %>
               <% else %>
               <%= image_tag @horse.user.facebook_picture_url, id: "user_pic", class: "avatar-extralarge" %>
               <% end %>
-              <p><%= @horse.user.first_name %></p>
+              <h2><%= @horse.user.first_name %></h2>
             </div>
-            <div class="infos">
-              <i class="fa fa-map-marker" aria-hidden="true"></i>
-              <p><%= @horse.address %></p>
+            <div class="address">
+              <h3><i class="fa fa-map-marker" aria-hidden="true"></i>    <%= @horse.address %></h3>
             </div>
         </div>
       </div>
 
       <div class="col-xs-12 col-sm-4">
-        <div class="booking-new">
+        <div class="booking-new text-center">
           <%= render "bookings/form", horse: @horse, booking: @booking %>
         </div>
       </div>
@@ -42,31 +41,29 @@
 
 
 <div class="white-wrapper">
-  <div class="details">
+  <div class="horse-description">
     <div class="container">
-      <h2>Le cheval</h2>
+      <h3>Le cheval</h3>
       <div class="row">
-        <div class="col-xs-12 col-sm-6">
+        <div class="col-xs-12 col-sm-4">
           <p>Nom : <%= @horse.name %></p>
           <p>Âge : <%= @horse.birth_date %></p>
           <p>Sexe : <%= @horse.sexe %></p>
           <p>Race : <%= @horse.race %></p>
         </div>
-        <div class="col-xs-12 col-sm-6">
+        <div class="col-xs-12 col-sm-4">
           <p>Discipline : <%= @horse.disciplines %></p>
           <p>Caractère : <%= @horse.character %></p>
           <p>Niveau requis : Galop <%= @horse.required_level %></p>
           <p>Prix de la demi-pension : <%= @horse.monthly_price %> € / mois</p>
         </div>
-      </div>
-      <div class="row">
-        <p>Description :</p>
+      <div class="col-xs-12 col-sm-4">
         <p><%= @horse.description %></p>
       </div>
     </div>
   </div>
 </div>
-
+</div>
 
   <div class="morephotos">
     <% @horse.photos.each do |photo| %>

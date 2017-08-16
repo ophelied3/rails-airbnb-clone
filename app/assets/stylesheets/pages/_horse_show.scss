@@ -11,14 +11,48 @@
   padding: 15px;
 }
 
-.general {
+.header-booking {
   margin: 50px 0;
 }
 
-.details {
+.horse-description {
   margin: 50px 0;
 }
 
-.infos {
+.address {
   margin-top: 50px;
 }
+
+
+.header-details h2 {
+  color: #2A363B;
+  font-weight: bold;
+}
+
+.header-details h3 {
+  font-size: 20px;
+}
+
+.header-details i {
+  font-size: 25px;
+}
+
+#top-price {
+  background-color: #2A363B;
+  color: white;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.horse-description h3 {
+  color: #2A363B;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+
+
+
+
+
