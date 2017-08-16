@@ -9,8 +9,6 @@ class BookingsController < ApplicationController
     @booking.horse = @horse
     @booking.price = @horse.monthly_price
 
-
-
     if @booking.save
       redirect_to @booking
     else
