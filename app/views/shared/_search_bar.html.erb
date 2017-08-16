@@ -7,7 +7,7 @@
                 <%= form_tag(horses_path, :method => "get", id: "search-form", role:'form') do %>
                   <div class="col-md-4">
                     <div class="form-group">
-                      <%= text_field_tag :lieu, params[:lieu], class: "form-control", type:"address", label: "Location", placeholder: "where ?" %>
+                      <%= text_field_tag :location, params[:location], class: "form-control", type:"address", label: "Location", placeholder: "where ?" %>
                     </div>
                   </div>
                   <div class="col-md-1">
