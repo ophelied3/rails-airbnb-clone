@@ -13,6 +13,7 @@ class BookingsController < ApplicationController
 
     if @booking.save
       redirect_to @booking
+      flash[:notice] = "La demi-pension a bien été réservée."
     else
       render 'horses/show'
     end
