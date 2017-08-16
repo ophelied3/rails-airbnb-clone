@@ -4,6 +4,20 @@ class HorsesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
+
+    if params[:location]
+      @horse_search = search(params[:location], params[:rayon])
+      else
+      @horse_search = Horse.all.order('created_at DESC')
+    end
+
+    @horses = Horse.where.not(latitude: nil, longitude: nil)
+
+    @hash = Gmaps4rails.build_markers(@horses) do |horse, marker|
+      marker.lat horse.latitude
+      marker.lng horse.longitude
+      # marker.infowindow render_to_string(partial: "/flats/map_box", locals: { flat: flat })
+    end
   end
 
   def show
@@ -50,12 +64,8 @@ class HorsesController < ApplicationController
     @horses = Horse.all
   end
 
-  def search(search)
-    horse_search = []
-    @horses.each do |horse|
-      horse_search << horse if horse.address.downcase.include? params[:address].downcase
-    end
-    return horse_search
+  def search(location, rayon)
+    return horse_search = Horse.near(location, rayon)
   end
 
   def horse_params
