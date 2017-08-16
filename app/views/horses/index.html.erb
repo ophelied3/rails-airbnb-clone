@@ -7,7 +7,7 @@
 
         <div class ="row">
           <% if @horse_search.empty? %>
-            <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+            <p>Aucune demi-pension près de <%= params[:location] %> dans un rayon de <%= params[:rayon]%> Km.</p>
           <%end%>
           <% @horse_search.each do |horse| %>
             <div class="col-xs-12 col-sm-6">
