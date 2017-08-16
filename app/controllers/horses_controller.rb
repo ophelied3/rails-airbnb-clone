@@ -2,13 +2,8 @@ class HorsesController < ApplicationController
   before_action :find_horse, only: [:show, :edit, :update, :destroy]
   before_action :all_horse, only: [:index]
   skip_before_action :authenticate_user!, only: [:index, :show]
-  
+
   def index
-    if params[:address]
-      @horse_search = search(params[:address])
-      else
-      @horse_search = Horse.all.order('created_at DESC')
-    end
   end
 
   def show
