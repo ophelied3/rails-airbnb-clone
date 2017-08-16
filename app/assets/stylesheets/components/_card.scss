@@ -47,3 +47,20 @@
 .card-link:hover {
   opacity: 0.1;
 }
+
+.card-profile-picture{
+   border-radius: 50%;
+}
+
+.card-profile-info{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  margin-top: 85px;
+  margin-right: 85px;
+
+}
+
+.card-profile-title{
+  background-color: #edefed;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
