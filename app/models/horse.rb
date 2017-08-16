@@ -21,4 +21,18 @@ class Horse < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
+  def self.races
+    RACES
+  end
+
+  def self.disciplines
+    DISCIPLINES
+  end
+
+  def self.characters
+    CHARACTERS
+  end
+
+
+
 end

@@ -16,16 +16,16 @@
         <div class="card-profile-title text-center  ">
           <h6> <%= @user.first_name %> <%= @user.last_name %> </h6>
         </div>
-        <h6>Votre adresse email: <%= @user.last_name %> </h6>
-        <h6>Date de naissance: <%= @user.birth_date %> </h6>
-        <h6>Riding Skills: <%= @user.level %> galop </h6>
-        <h6>Genre
+        <h6> <strong> Votre adresse email: </strong> <%= @user.email %> </h6>
+        <h6> <strong> Date de naissance: </strong> <%= @user.birth_date.strftime("%d/%m/%Y") %> </h6>
+        <h6> <strong> Riding Skills: </strong> <%= @user.level %> galops </h6>
+        <h6> <strong> Genre: </strong>
         <%if @user.sexe == "Homme" %>
           <%= "Masculin" %>
         <% else %>
           <%= "Féminin" %> </h6>
         <% end %>
-        <h6>Membre depuis <%= @user.created_at %> </h6>
+        <h6> <strong> Membre depuis le: </strong><%= @user.created_at.strftime("%d/%m/%Y") %> </h6>
       </div>
     </div>
   </div>

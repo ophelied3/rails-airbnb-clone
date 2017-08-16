@@ -8,9 +8,10 @@
           <div class="card-description">
             <h2> <%= booking.horse.name %> </h2>
             <p> Prix : <%= booking.price %> </p>
-            <p> Date de début : <%=   booking.start_date %> </p>
-            <p> Date de fin : <%= booking.end_date %> </p>
+            <p> Date de début : <%=   booking.start_date.strftime("%m/%d/%Y") %> </p>
+            <p> Date de fin : <%= booking.end_date.strftime("%m/%d/%Y") %> </p>
           </div>
+          <%= link_to "", booking, class:"card-link"%>
         </div>
       <%end%>
     </div>
