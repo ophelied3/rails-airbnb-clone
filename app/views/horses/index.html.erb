@@ -7,7 +7,8 @@
 
         <div class ="row">
           <% if @horse_search.empty? %>
-            <p>Nous n'avons trouvé aucune demi-pension dans un rayon de <%= params[:rayon]%>km autour de <%= params[:location] %>.</p>
+            <p>Nous n'avons trouvé aucune demi-pension dans un rayon de <%=  params["/horses"][:rayon]%>km autour de <%= params["/horses"][:location] %>.</p>
+            <p>Ou il n'y a pas de demi-pension dans les dates indiquer</p>
           <%end%>
           <% @horse_search.first(8).each do |horse| %>
             <div class="col-xs-12 col-sm-6">
