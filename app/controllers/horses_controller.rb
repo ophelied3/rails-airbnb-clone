@@ -9,7 +9,8 @@ class HorsesController < ApplicationController
     unless params["/horses"].nil?
       data = params["/horses"]
     end
-    unless data[:location].empty? || data[:start_date].empty? || data[:end_date].empty?
+
+    unless data[:location].empty? && (data[:start_date].empty? || data[:end_date].empty?)
       search_data = {location: data[:location], rayon: data[:rayon], start_date: data[:start_date], end_date: data[:end_date]}
       @horse_search = search(search_data)
     else
@@ -68,7 +69,7 @@ class HorsesController < ApplicationController
   end
 
   def search(data)
-    return horse_search = Horse.near(data[:location], data[:rayon]) if data[:start_date].empty? && data[:end_date].empty?
+    return horse_search = Horse.near(data[:location], data[:rayon]) if data[:start_date].empty? || data[:end_date].empty?
     horses = Horse.near(data[:location], data[:rayon])
     horses = Horse.all.order('created_at DESC') if data[:location].empty?
     horse_search = []
