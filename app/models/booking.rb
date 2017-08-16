@@ -11,4 +11,12 @@ class Booking < ApplicationRecord
     Date.today.between?(start_date, end_date)
   end
 
+  def available?
+    if Date.today.between?(start_date, end_date)
+      return false
+    else
+      return true
+    end
+  end
+
 end
