@@ -18,5 +18,7 @@ class Horse < ApplicationRecord
   has_attachment :horse_pic
   has_attachments :photos, maximum: 5
   validates :horse_pic, presence: true
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 
 end

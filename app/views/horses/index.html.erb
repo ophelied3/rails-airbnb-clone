@@ -1,15 +1,15 @@
-<%= render 'shared/search_bar' %>
+<%= render 'shared/search_bar_v2' %>
 <div class="content">
   <div class="container">
-  <h1 class = "text-center" >Nos beaux chevaux</h1>
+  <h1 class = "text-center">Nos beaux chevaux</h1>
     <div class ="row">
       <div class="col-xs-6">
 
         <div class ="row">
           <% if @horse_search.empty? %>
-            <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+            <p>Nous n'avons trouvé aucune demi-pension dans un rayon de <%= params[:rayon]%>km autour de <%= params[:location] %>.</p>
           <%end%>
-          <% @horse_search.each do |horse| %>
+          <% @horse_search.first(8).each do |horse| %>
             <div class="col-xs-12 col-sm-6">
               <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
                url('<%= cl_image_path horse.horse_pic.path, height: 300, width: 400, crop: :fill %>')">
@@ -24,15 +24,26 @@
         </div>
       </div>
       <div class="col-xs-6">
-        <div id="map">
-          <form class="form-inline text-center target">
-          <label class="sr-only" for="inlineFormInput">Address</label>
-          <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="21, rue Fernand Marin">
-          <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-          <script src="https://maps.googleapis.com/maps/api/js"></script>
-        </div>
+        <div id="map"></div>
       </div>
     </div>
   </div>
 </div>
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+      });
+    });
+  <% end %>
+<% end %>

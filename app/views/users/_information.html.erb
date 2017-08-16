@@ -63,7 +63,7 @@
       <div class="profile-card col-xs-12 col-md-6">
         <div class="profile-picture">
           <% if @user.facebook_picture_url == nil %>
-          <%= cl_image_tag @user.photo.path, id: "user_pic"  %>
+          <%= cl_image_tag @user.photo.path, id: "user_pic", width: 200, height: 300, crop: :fill   %>
           <% else %>
           <%= image_tag @user.facebook_picture_url, id: "user_pic" %>
           <% end %>

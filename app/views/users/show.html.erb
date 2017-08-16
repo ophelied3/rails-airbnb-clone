@@ -1,16 +1,11 @@
 <h3 class = "text-center">Votre profil</h3>
-
 <div class="tabs">
-
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#user-info" aria-controls="home" role="tab" data-toggle="tab">Mes informations</a></li>
     <li role="presentation"><a href="#user-booking" aria-controls="profile" role="tab" data-toggle="tab">Mes bookings</a></li>
     <li role="presentation"><a href="#user-horses" aria-controls="messages" role="tab" data-toggle="tab">Mes chevaux</a></li>
   </ul>
-
 </div>
-
-
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane active" id="user-info"> <%= render "information", user: @user %> </div>
   <div role="tabpanel" class="tab-pane" id="user-booking"> <%= render "historique", user: @user %> </div>
