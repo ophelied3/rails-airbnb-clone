@@ -1,8 +1,11 @@
 class BookingsController < ApplicationController
   def show
-    @booking = Booking.find(params[:id])
-    @horse = @booking.horse
-
+    if current_user == @booking.user || current_user == @booking.horse.user
+      @booking = Booking.find(params[:id])
+      @horse = @booking.horse
+    else
+      redirect_to horses_path
+    end
   end
 
   def create
@@ -41,5 +44,3 @@ class BookingsController < ApplicationController
     @horse.monthly_price * month_num.to_i
   end
 end
-
-
