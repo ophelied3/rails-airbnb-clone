@@ -5,29 +5,29 @@
       <div class="form-group">
         <div class="form-boite">
           <h3 class="text-center">Présentez votre cheval</h3>
-          <%= f.input :name, label:"Nom du cheval:" %>
-          <%= f.input :address, label: "Ou se trouve votre cheval ?" %>
-          <%= f.input :description, label: "Decrivez votre cheval:" %>
-          <%= f.input :birth_date, label: "Selectionner la date de naissance:" %>
+          <%= f.input :name, label:"Nom du cheval" %>
+          <%= f.input :address, label: "Où se trouve votre cheval ?" %>
+          <%= f.input :description, label: "Décrivez votre cheval" %>
+          <%= f.input :birth_date, label: "Sélectionnez la date de naissance" %>
           <%= f.input :sexe, collection: ["Hongre", "Etalon", "Jument"]  %>
           <%= f.input :race, collection: Horse.races, prompt: "Choose one" %>
-          <%= f.input :disciplines, collection: Horse.disciplines, prompt: "Choose one" %>
-          <%= f.input :character, collection: Horse.characters, prompt: "Choose one" %>
+          <%= f.input :disciplines, collection: Horse.disciplines, prompt: "Choose one", label: "Discipline" %>
+          <%= f.input :character, collection: Horse.characters, prompt: "Choose one", label: "Caractère" %>
         </div>
       </div>
 
       <div class="form-group">
         <div class="form-boite">
           <h3 class="text-center">Quelques infos sur votre annonce</h3>
-            <%= f.input :title, label: "Donnez un nom a votre annonce:" %>
-            <%= f.input :monthly_price, label: "tarif de l'abonnement" %>
-            <%= f.input :required_level, label: "niveau requis" %>
+            <%= f.input :title, label: "Donnez un nom à votre annonce" %>
+            <%= f.input :monthly_price, label: "Tarif de la demi-pension" %>
+            <%= f.input :required_level, label: "Niveau requis" %>
         </div>
       </div>
     </div>
     <div class="text-center">
-      <%= f.input :horse_pic, as: :attachinary %>
-      <%= f.button :submit, class:"btn btn-primary"%>
+      <%= f.input :horse_pic, as: :attachinary, label: "Photo" %>
+      <%= f.button :submit, class:"btn btn-primary", value: "Ajouter" %>
     </div>
   <% end %>
 </div>
