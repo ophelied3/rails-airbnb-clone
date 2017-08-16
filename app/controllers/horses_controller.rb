@@ -68,6 +68,10 @@ class HorsesController < ApplicationController
     @horses = Horse.all
   end
 
+  def horse_params
+    params.require(:horse).permit(:name, :description, :title, :birth_date, :address, :sexe, :race, :disciplines, :character, :required_level, :monthly_price, :horse_pic, photos: [])
+  end
+
   def search(data)
     return horse_search = Horse.near(data[:location], data[:rayon]) if data[:start_date].empty? || data[:end_date].empty?
     horses = Horse.near(data[:location], data[:rayon])
@@ -87,10 +91,6 @@ class HorsesController < ApplicationController
       end
     end
     return horse_search
-  end
-
-  def horse_params
-    params.require(:horse).permit(:name, :description, :title, :birth_date, :address, :sexe, :race, :disciplines, :character, :required_level, :monthly_price, :horse_pic, photos: [])
   end
 
 end
