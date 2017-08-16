@@ -5,7 +5,17 @@
 <div class="show-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
          url('<%= cl_image_path @horse.horse_pic.path, height: 900, width: 1000, crop: :fill %>'); background-position: center;">
   <div class="banner-content">
-    <h1><%= @horse.title.capitalize %></h1>
+    <h1>
+      <%= @horse.title.capitalize %>
+      <% if current_user == @horse.user %>
+        <%= link_to edit_horse_path(@horse) do %>
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        <% end %>
+        <%= link_to horse_path(@horse), method: :delete, data: { confirm: "Are you sure?" } do %>
+          <i class="fa fa-times" aria-hidden="true"></i>
+         <% end %>
+      <% end %>
+    </h1>
   </div>
 </div>
 
@@ -39,45 +49,60 @@
 </div>
 
 
-
 <div class="white-wrapper">
   <div class="horse-description">
     <div class="container">
       <h3>Le cheval</h3>
       <div class="row">
         <div class="col-xs-12 col-sm-4">
-          <p>Nom : <%= @horse.name %></p>
-          <p>Âge : <%= @horse.birth_date %></p>
-          <p>Sexe : <%= @horse.sexe %></p>
-          <p>Race : <%= @horse.race %></p>
+          <p><strong>Nom :</strong> <%= @horse.name %></p>
+          <p><strong>Âge :</strong> <%= (Date.today - @horse.birth_date).to_i / 365 %> ans</p>
+          <p><strong>Sexe :</strong> <%= @horse.sexe %></p>
+          <p><strong>Race :</strong> <%= @horse.race %></p>
         </div>
         <div class="col-xs-12 col-sm-4">
-          <p>Discipline : <%= @horse.disciplines %></p>
-          <p>Caractère : <%= @horse.character %></p>
-          <p>Niveau requis : Galop <%= @horse.required_level %></p>
-          <p>Prix de la demi-pension : <%= @horse.monthly_price %> € / mois</p>
+          <p><strong>Discipline :</strong> <%= @horse.disciplines %></p>
+          <p><strong>Caractère :</strong> <%= @horse.character %></p>
+          <p><strong>Niveau requis :</strong> Galop <%= @horse.required_level %></p>
+          <p><strong>Prix de la demi-pension :</strong> <%= @horse.monthly_price %> € / mois</p>
         </div>
-      <div class="col-xs-12 col-sm-4">
-        <p><%= @horse.description %></p>
+        <div class="col-xs-12 col-sm-4">
+          <p><strong>Description :</strong> <%= @horse.description %></p>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<h3 class="horse-description">La localisation</h3>
+<div id="map" style="width: 100%; height: 300px;"></div>
+
+<div class="morephotos">
+  <% @horse.photos.each do |photo| %>
+  <%= cl_image_tag(photo.path, { size: '125x125', crop: :fit }) %>
+  <% end %>
 </div>
 
-  <div class="morephotos">
-    <% @horse.photos.each do |photo| %>
-    	<%= cl_image_tag(photo.path, { size: '125x125', crop: :fit }) %>
-    <% end %>
-  </div>
+<div class="bouton text-center">
+<%= link_to "Retourner à l'index", horses_path, class:"btn btn-primary" %>
+</div>
 
-  <% if current_user == @horse.user %>
-    <p> <%= link_to "Editer", edit_horse_path(@horse), class: "btn btn-primary" %>
-  <%end%>
-  <p> <%= link_to "Retourner à l'index", horses_path, class:"btn btn-primary" %></p>
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers([
+    {
+    "lat": <%= @horse.latitude %>,
+    "lng": <%= @horse.longitude %>,
+  }
+  ]);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+  });
 
-
-
+  <% end %>
+<% end %>
 
 
 
