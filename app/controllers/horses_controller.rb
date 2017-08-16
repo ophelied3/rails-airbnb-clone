@@ -8,7 +8,7 @@ class HorsesController < ApplicationController
     unless params["/horses"].nil?
       data = params["/horses"]
     end
-    if data[:location]
+    if data[:location] || (data[:start_date] && data[:end_date])
       search_data = {location: data[:location], rayon: data[:rayon], start_date: data[:start_date], end_date: data[:end_date]}
       @horse_search = search(search_data)
     else
