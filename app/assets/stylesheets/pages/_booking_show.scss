@@ -7,24 +7,28 @@
   margin: 50px 0;
 }
 
-.booking-users h2 {
-  color: #2A363B;
+
+.booking-informations {
+  border-radius: 5px;
+  padding: 20px 0;
+  background-color: #E84A5F;
+  color: white;
+  font-weight: lighter;
+}
+
+.booking-show h4 {
   font-weight: bold;
 }
 
-.booking-users h3 {
-  font-size: 20px;
+#map-title {
+  color: #2A363B;
+  font-weight: bold;
+  text-align: center;
+  padding: 50px 0px;
+  margin: 0px
 }
 
-.booking-users i {
-  font-size: 25px;
-}
-
-.booking-informations {
-  background-color: white;
-  border-radius: 5px;
-}
-
-.booking-informations form {
-  padding: 15px;
+#edit_booking_35 {
+  margin-top: 40px;
+  text-align: center;
 }

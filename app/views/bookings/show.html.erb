@@ -3,32 +3,29 @@
 <div class="container">
   <div class="row">
     <div class="booking-show">
-      <div class="col-xs-12 col-sm-6 col-sm-offset-1">
-        <div class="booking-users">
-            <div class="user-horse">
-              <p>Le propriétaire :</p>
-              <% if @horse.user.facebook_picture_url == nil %>
-              <%= cl_image_tag @horse.user.photo.path, id: "user_pic", class: "avatar-extralarge"  %>
-              <% else %>
-              <%= image_tag @horse.user.facebook_picture_url, id: "user_pic", class: "avatar-extralarge" %>
-              <% end %>
-              <%= @horse.user.first_name %>
-            </div>
-            <div class="user-booking">
-              <p>Le demi-pensionnaire :</p>
-              <% if @booking.user.facebook_picture_url == nil %>
-              <%= cl_image_tag @booking.user.photo.path, id: "user_pic", class: "avatar-extralarge"  %>
-              <% else %>
-              <%= image_tag @booking.user.facebook_picture_url, id: "user_pic", class: "avatar-extralarge" %>
-              <% end %>
-              <%= @booking.user.first_name %>
-            </div>
-        </div>
+      <div class="col-xs-12 col-sm-4">
+        <h4>Le propriétaire :</h4>
+        <% if @horse.user.facebook_picture_url == nil %>
+        <%= cl_image_tag @horse.user.photo.path, id: "user_pic", class: "avatar-extralarge"  %>
+        <% else %>
+        <%= image_tag @horse.user.facebook_picture_url, id: "user_pic", class: "avatar-extralarge" %>
+        <% end %>
+        <%= @horse.user.first_name %>
+      </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <h4>Le demi-pensionnaire :</h4>
+        <% if @booking.user.facebook_picture_url == nil %>
+        <%= cl_image_tag @booking.user.photo.path, id: "user_pic", class: "avatar-extralarge"  %>
+        <% else %>
+        <%= image_tag @booking.user.facebook_picture_url, id: "user_pic", class: "avatar-extralarge" %>
+        <% end %>
+        <%= @booking.user.first_name %>
       </div>
 
       <div class="col-xs-12 col-sm-4">
         <div class="booking-informations text-center">
-          <h3>Informations</h3>
+          <h4>Informations</h4>
           <p>Date de début : <%= @booking.start_date %></p>
           <p>Date de fin : <%= @booking.end_date %></p>
           <p>Prix total : <%= @booking.price %> €</p>
@@ -38,43 +35,45 @@
   </div>
 </div>
 
-<h3>Localisation</h3>
-<div id="map" style="width: 100%; height: 300px;"></div>
-
 <div class="white-wrapper">
   <div class="horse-description">
     <div class="container">
-      <h3>Le cheval</h3>
+      <h3>Infos sur le cheval</h3>
       <div class="row">
         <div class="col-xs-12 col-sm-4">
-          <p>Nom : <%= @horse.name %></p>
-          <p>Âge : <%= @horse.birth_date %></p>
-          <p>Sexe : <%= @horse.sexe %></p>
-          <p>Race : <%= @horse.race %></p>
+          <p><strong>Nom :</strong> <%= @horse.name %></p>
+          <p><strong>Âge :</strong> <%= (Date.today - @horse.birth_date).to_i / 365 %> ans</p>
+          <p><strong>Sexe :</strong> <%= @horse.sexe %></p>
+          <p><strong>Race :</strong> <%= @horse.race %></p>
         </div>
         <div class="col-xs-12 col-sm-4">
-          <p>Discipline : <%= @horse.disciplines %></p>
-          <p>Caractère : <%= @horse.character %></p>
-          <p>Niveau requis : Galop <%= @horse.required_level %></p>
-          <p>Prix de la demi-pension : <%= @horse.monthly_price %> € / mois</p>
+          <p><strong>Discipline :</strong> <%= @horse.disciplines %></p>
+          <p><strong>Caractère :</strong> <%= @horse.character %></p>
+          <p><strong>Niveau requis :</strong> Galop <%= @horse.required_level %></p>
+          <p><strong>Prix de la demi-pension :</strong> <%= @horse.monthly_price %> € / mois</p>
         </div>
       <div class="col-xs-12 col-sm-4">
-          <p><%= @horse.description %></p>
+        <p><strong>Description :</strong> <%= @horse.description %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+        <% if @booking.rating.nil? %>
+          <%= simple_form_for @booking do |f| %>
+            <%= f.input :rating, label: "Donnez une note au cheval :" %>
+            <%= f.button :submit, value: "Valider", class:"btn btn-primary"%>
+          <% end %>
+        <% else %>
+          <p>Note de la demi-pension : <%= @booking.rating %></p>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
 </div>
 
-<% if @booking.rating.nil? %>
-  <%= simple_form_for @booking do |f| %>
-    <%= f.input :rating, label: "Donnez une note au cheval :" %>
-    <%= f.button :submit, class:"btn btn-primary"%>
-  <% end %>
-<% else %>
-  <p>Note de la demi-pension : <%= @booking.rating %></p>
-<% end %>
-
+<h3 id="map-title">Localisation</h3>
+<div id="map" style="width: 100%; height: 300px;"></div>
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
@@ -89,7 +88,6 @@
   handler.bounds.extendWith(markers);
   handler.fitMapToBounds();
   });
-
   <% end %>
 <% end %>
 
