@@ -1,4 +1,12 @@
-<div class="container text-center">
-  <h1>Fiche d'inscription: </h1>
-  <%= render 'new_form' %>
+<div class="form-banner" style="background-image: linear-gradient(-225deg, rgba(50,50,50,0.5) 0%, rgba(50,50,50,0.5) 50%), url('<%= image_path "background_cavalira.png" %>');">
+  <h1 class="form-title text-center">Fiche d'inscription: </h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+      <%= render 'new_form' %>
+    </div>
+  </div>
 </div>
