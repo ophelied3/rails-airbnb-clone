@@ -4,7 +4,7 @@
   <div class="row">
     <div class="booking-show">
       <div class="col-xs-12 col-sm-4">
-        <p>Le propriétaire :</p>
+        <h4>Le propriétaire :</h4>
         <% if @horse.user.facebook_picture_url == nil %>
         <%= cl_image_tag @horse.user.photo.path, id: "user_pic", class: "avatar-extralarge"  %>
         <% else %>
@@ -14,7 +14,7 @@
       </div>
 
       <div class="col-xs-12 col-sm-4">
-        <p>Le demi-pensionnaire :</p>
+        <h4>Le demi-pensionnaire :</h4>
         <% if @booking.user.facebook_picture_url == nil %>
         <%= cl_image_tag @booking.user.photo.path, id: "user_pic", class: "avatar-extralarge"  %>
         <% else %>
@@ -38,22 +38,22 @@
 <div class="white-wrapper">
   <div class="horse-description">
     <div class="container">
-      <h3>Le cheval</h3>
+      <h3>Infos sur le cheval</h3>
       <div class="row">
         <div class="col-xs-12 col-sm-4">
-          <p>Nom : <%= @horse.name %></p>
-          <p>Âge : <%= @horse.birth_date %></p>
-          <p>Sexe : <%= @horse.sexe %></p>
-          <p>Race : <%= @horse.race %></p>
+          <p><strong>Nom :</strong> <%= @horse.name %></p>
+          <p><strong>Âge :</strong> <%= (Date.today - @horse.birth_date).to_i / 365 %> ans</p>
+          <p><strong>Sexe :</strong> <%= @horse.sexe %></p>
+          <p><strong>Race :</strong> <%= @horse.race %></p>
         </div>
         <div class="col-xs-12 col-sm-4">
-          <p>Discipline : <%= @horse.disciplines %></p>
-          <p>Caractère : <%= @horse.character %></p>
-          <p>Niveau requis : Galop <%= @horse.required_level %></p>
-          <p>Prix de la demi-pension : <%= @horse.monthly_price %> € / mois</p>
+          <p><strong>Discipline :</strong> <%= @horse.disciplines %></p>
+          <p><strong>Caractère :</strong> <%= @horse.character %></p>
+          <p><strong>Niveau requis :</strong> Galop <%= @horse.required_level %></p>
+          <p><strong>Prix de la demi-pension :</strong> <%= @horse.monthly_price %> € / mois</p>
         </div>
       <div class="col-xs-12 col-sm-4">
-        <p><%= @horse.description %></p>
+        <p><strong>Description :</strong> <%= @horse.description %></p>
       </div>
     </div>
     <div class="row">
@@ -61,7 +61,7 @@
         <% if @booking.rating.nil? %>
           <%= simple_form_for @booking do |f| %>
             <%= f.input :rating, label: "Donnez une note au cheval :" %>
-            <%= f.button :submit, class:"btn btn-primary"%>
+            <%= f.button :submit, value: "Valider", class:"btn btn-primary"%>
           <% end %>
         <% else %>
           <p>Note de la demi-pension : <%= @booking.rating %></p>
@@ -72,11 +72,8 @@
 </div>
 </div>
 
-
-
-<h3>Localisation</h3>
+<h3 id="map-title">Localisation</h3>
 <div id="map" style="width: 100%; height: 300px;"></div>
-
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
@@ -91,7 +88,6 @@
   handler.bounds.extendWith(markers);
   handler.fitMapToBounds();
   });
-
   <% end %>
 <% end %>
 
