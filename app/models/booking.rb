@@ -7,4 +7,8 @@ class Booking < ApplicationRecord
   validates_date :start_date, :after => lambda { Date.today }
   validates_date :end_date, :after => lambda { :start_date }
 
+  def rented?
+    Date.today.between?(start_date, end_date)
+  end
+
 end
