@@ -1,8 +1,11 @@
 .tabs {
-  background: #53443F;
+  background: #E84A5F;
   display: flex;
-  padding: 8px 8px 0 8px
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 12px 12px 0 12px
 }
+
 .tabs a {
   color: white;
 }
@@ -24,13 +27,15 @@
   background: #756A66;
   flex: 0 0 25%;
   text-align: center;
-  padding: 10px 0;
+  padding: 20px 0;
+  padding-right: 40px;
+  padding-left: 40px;
 }
 .tab:first-child {
-
+  border-radius: 10px 0 0 0;
 }
 .tab:last-child {
-
+  border-radius: 0 10px 0 0;
 }
 .tab.active {
   background: white;

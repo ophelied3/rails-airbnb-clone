@@ -1,32 +1,17 @@
-<div class ="page-container">
-<div class="tabs">
-  <%= form_tag(@user, :method => "get", role: "form") do %>
-    <%= text_field_tag :information, params[:information], class: "hidden", value: "information" %>
-    <%= submit_tag "Mes informations", class: 'tab'%>
-  <%end%>
-
-  <%= form_tag(@user, :method => "get", role: "form") do %>
-    <%= text_field_tag :historique, params[:historique], class: "hidden", value: "historique" %>
-    <%= submit_tag "Mes bookings", class: 'tab'%>
-  <%end%>
-
-  <%= form_tag(@user, :method => "get", role: "form") do %>
-    <%= text_field_tag :chevaux, params[:chevaux], class: "hidden", value: "chevaux" %>
-    <%= submit_tag "Mes Chevaux", class: 'tab active'%>
-  <%end%>
-
-  </div>
-
 <h4 class ="text-center">Mes chevaux </h4>
-<% @horses.each do |horse| %>
-   <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2))">
-    <div class="card-description">
-      <h2> <%= horse.name %> </h2>
+
+<div class ="container">
+  <div class="row">
+    <% @horses.each do |horse| %>
+    <div class="col-xs-12 col-sm-4">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path horse.horse_pic.path %>')">
+        <div class="card-description">
+        <h2> <%= horse.name %> </h2>
+        </div>
+        <%= link_to "", horse, class:"card-link"%>
+      </div>
     </div>
-    <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
+    <% end %>
   </div>
-<% end %>
-
-
 </div>
 

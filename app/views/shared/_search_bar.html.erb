@@ -5,36 +5,34 @@
           <div class="form-section">
             <div class="row">
                 <%= form_tag(horses_path, :method => "get", id: "search-form", role:'form') do %>
-                  <div class="col-md-4">
+                  <div class="col-md-2">
                     <div class="form-group">
                       <%= text_field_tag :location, params[:location], class: "form-control", type:"address", label: "Location", placeholder: "where ?" %>
                     </div>
                   </div>
                   <div class="col-md-1">
                     <div class="form-group">
-                      <%= text_field_tag :rayon, params[:rayon], class: "form-control", type:"rayon", label: "Rayon de recherhe (Km)", placeholder: "10", value: 10 %>
+                      <%= text_field_tag :rayon, params[:rayon], class: "form-control", type:"text", label: "Rayon de recherhe (Km)", placeholder: "10", value: 10 %>
                     </div>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-4">
                     <div class="form-group">
-                      <label class="sr-only" for="checkin">Check in</label>
                       <div class="input-group">
-                        <input type="text" class="form-control" id="checkin" placeholder="Check in">
+                        <%= text_field_tag :start_date, params[:start_date], label: "Check In", class: "form-control", type:"date", placeholder: "Check in" %>
                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-4">
                     <div class="form-group">
-                      <label class="sr-only" for="checkout">Check out</label>
                       <div class="input-group">
-                        <input type="text" class="form-control" id="checkout" placeholder="Check out">
+                        <%= text_field_tag :end_date, params[:end_date], label: "Check Out", class: "form-control", type:"date", placeholder: "Check out" %>
                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-2">
-                    <%= submit_tag "Search" %>
+                  <div class="col-md-1">
+                    <%= submit_tag "Search"%>
                   </div>
                 <% end %>
             </div>

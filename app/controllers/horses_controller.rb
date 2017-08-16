@@ -4,16 +4,19 @@ class HorsesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-
-    if params[:location]
-      @horse_search = search(params[:location], params[:rayon])
-      else
+    @horses = Horse.where.not(latitude: nil, longitude: nil)
+    data = {location: "", start_date: "", end_date: ""}
+    unless params["/horses"].nil?
+      data = params["/horses"]
+    end
+    unless data[:location].empty? || data[:start_date].empty? || data[:end_date].empty?
+      search_data = {location: data[:location], rayon: data[:rayon], start_date: data[:start_date], end_date: data[:end_date]}
+      @horse_search = search(search_data)
+    else
       @horse_search = Horse.all.order('created_at DESC')
     end
 
-    @horses = Horse.where.not(latitude: nil, longitude: nil)
-
-    @hash = Gmaps4rails.build_markers(@horses) do |horse, marker|
+    @hash = Gmaps4rails.build_markers(@horse_search) do |horse, marker|
       marker.lat horse.latitude
       marker.lng horse.longitude
       # marker.infowindow render_to_string(partial: "/flats/map_box", locals: { flat: flat })
@@ -64,8 +67,25 @@ class HorsesController < ApplicationController
     @horses = Horse.all
   end
 
-  def search(location, rayon)
-    return horse_search = Horse.near(location, rayon)
+  def search(data)
+    return horse_search = Horse.near(data[:location], data[:rayon]) if data[:start_date].empty? && data[:end_date].empty?
+    horses = Horse.near(data[:location], data[:rayon])
+    horses = Horse.all.order('created_at DESC') if data[:location].empty?
+    horse_search = []
+    horses.each do |horse|
+      if horse.bookings.first == nil
+        horse_search << horse
+      else
+        horse.bookings.each do |booking|
+          start_date = data[:start_date].to_date.between?(booking.start_date, booking.end_date) unless data[:start_date].empty?
+          end_date = data[:end_date].to_date.between?(booking.start_date, booking.end_date) unless data[:end_date].empty?
+          unless start_date || end_date
+            horse_search << horse
+          end
+        end
+      end
+    end
+    return horse_search
   end
 
   def horse_params
