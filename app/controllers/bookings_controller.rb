@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   def show
+    @booking = Booking.find(params[:id])
     if current_user == @booking.user || current_user == @booking.horse.user
-      @booking = Booking.find(params[:id])
       @horse = @booking.horse
     else
       redirect_to horses_path
