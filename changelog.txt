@@ -26,5 +26,8 @@ Horse Search -> arnaudaprahamian
 1er commit: [Horses_Controller.rb]
 Petite refacto du controller
 
-Dernier commit:
+2eme commit [Horses_controller.rb - _search_bar.html.erb]:
 Modification du Controller, et des views!
+
+3eme commit [Horses_controller.rb - _search_bar.html.erb]:
+Integration du géocodeur dans nôtre bar de recherche !
