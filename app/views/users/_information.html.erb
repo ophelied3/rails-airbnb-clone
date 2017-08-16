@@ -17,14 +17,30 @@
           <h6> <%= @user.first_name %> <%= @user.last_name %> </h6>
         </div>
         <h6> <strong> Votre adresse email: </strong> <%= @user.email %> </h6>
-        <h6> <strong> Date de naissance: </strong> <%= @user.birth_date.strftime("%d/%m/%Y") %> </h6>
-        <h6> <strong> Riding Skills: </strong> <%= @user.level %> galops </h6>
+
+        <h6> <strong> Date de naissance: </strong>
+        <%if @user.birth_date == nil %>
+          <%= "Manquant" %>
+        <% else %>
+          <%= @user.birth_date.strftime("%d/%m/%Y") %> </h6>
+        <% end %>
+
+        <h6> <strong> Riding Skills: </strong>
+        <%if @user.level == nil %>
+          <%= "0 galop" %>
+        <% else %>
+          <%= @user.level %> galops </h6>
+        <% end %>
+
         <h6> <strong> Genre: </strong>
         <%if @user.sexe == "Homme" %>
           <%= "Masculin" %>
+        <% elsif @user.sexe == "Femme" %>
+          <%= "Féminin" %>
         <% else %>
-          <%= "Féminin" %> </h6>
+          <%= "Manquant" %> </h6>
         <% end %>
+
         <h6> <strong> Membre depuis le: </strong><%= @user.created_at.strftime("%d/%m/%Y") %> </h6>
       </div>
     </div>
