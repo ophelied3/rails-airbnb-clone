@@ -36,10 +36,13 @@ class HorsesController < ApplicationController
   def create
     @horse = current_user.horses.new(horse_params)
     if @horse.save!
+      HorseMailer.creation_confirmation(@horse).deliver_now
       redirect_to @horse
     else
       render :new
     end
+
+
   end
 
   def edit
