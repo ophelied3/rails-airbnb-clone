@@ -33,9 +33,41 @@ class Horse < ApplicationRecord
     CHARACTERS
   end
 
+  def self.search(params)
+
+    horses = Horse.all
+    begin_date = Date.new(params["begin_date(1i)"].to_i, params["begin_date(2i)"].to_i, params["begin_date(3i)"].to_i)
+    final_date = Date.new(params["final_date(1i)"].to_i, params["final_date(2i)"].to_i, params["final_date(3i)"].to_i)
+
+    if params[:race].present?
+      horses = horses.where(race: params[:race])
+    end
+
+    if params[:address].present?
+      horses = horses.near(params[:address], 20)
+    end
+
+    horses = horses.joins(:bookings).where.not('(start_date BETWEEN ? AND ? OR end_date BETWEEN ? AND ?) OR (start_date <= ? AND end_date >= ?)', begin_date, final_date, begin_date, final_date, begin_date, final_date) + horses.left_outer_joins(:bookings).where( bookings: { id: nil } )
+
+    horses
+  end
+  
   def average_rating
     ratings = self.bookings.map(&:rating).reject{|b| b.nil? }
     ratings.empty? ? 5 : ratings.sum.to_f / ratings.size
   end
 
 end
+
+
+
+
+
+
+
+
+
+
+
+
+

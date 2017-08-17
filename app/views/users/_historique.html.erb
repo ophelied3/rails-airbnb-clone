@@ -4,7 +4,8 @@
   <div class="row">
     <div class="col-xs-12 col-sm-4">
       <% @bookings.each do |booking| %>
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path booking.horse.horse_pic.path %>')"> </div>
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path booking.horse.horse_pic.path %>')">
+            <div class="card-category"><%= booking.status %></div>
           <div class="card-description">
             <h2> <%= booking.horse.name %> </h2>
             <p> Prix : <%= booking.price %> </p>
