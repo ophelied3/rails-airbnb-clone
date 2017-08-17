@@ -20,9 +20,12 @@ class BookingsController < ApplicationController
     if @horse.required_level > current_user.level
       flash[:alert] = "Vous n'avez pas le niveau requis pour cette demi-pension"
       return render 'horses/show'
+    elsif @horse.user == current_user
+      flash[:alert] = "Vous ne pouvez pas réserver votre propre cheval."
+      return render 'horses/show'
     elsif @booking.save
       redirect_to @booking
-      flash[:notice] = "La demi-pension a bien été réservée."
+      flash[:notice] = "La demande de demi-pension a bien été envoyée au propriétaire."
     else
       render 'horses/show'
     end
