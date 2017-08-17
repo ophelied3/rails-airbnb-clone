@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
     <div class="booking-show">
-      <div class="col-xs-12 col-sm-4">
+      <div class="col-xs-12 col-sm-3">
         <h4>Le propriétaire :</h4>
         <% if @horse.user.facebook_picture_url == nil %>
         <%= cl_image_tag @horse.user.photo.path, id: "user_pic", class: "avatar-extralarge"  %>
@@ -13,7 +13,7 @@
         <%= @horse.user.first_name %>
       </div>
 
-      <div class="col-xs-12 col-sm-4">
+      <div class="col-xs-12 col-sm-3">
         <h4>Le demi-pensionnaire :</h4>
         <% if @booking.user.facebook_picture_url == nil %>
         <%= cl_image_tag @booking.user.photo.path, id: "user_pic", class: "avatar-extralarge"  %>
@@ -23,13 +23,31 @@
         <%= @booking.user.first_name %>
       </div>
 
-      <div class="col-xs-12 col-sm-4">
+      <div class="col-xs-12 col-sm-3">
         <div class="booking-informations text-center">
           <h4>Informations</h4>
           <p>Date de début : <%= @booking.start_date %></p>
           <p>Date de fin : <%= @booking.end_date %></p>
           <p>Prix total : <%= @booking.price %> €</p>
         </div>
+      </div>
+      <div class="col-xs-12 col-sm-3">
+        <div class="message-status">
+          <% if @booking.status == "En attente" && current_user == @booking.horse.user%>
+            <p class="status pending">Status: <%= @booking.status %></p>
+            <%= link_to 'Accepter', accepted_booking_path(@booking), class: "btn btn-success", method: :patch%> - <%= link_to 'Refuser', decline_booking_path(@booking), class: "btn btn-danger", method: :patch%>
+            <%= link_to 'Annuler', decline_booking_path(@booking), class: "btn btn-warning", method: :patch%>
+          <% elsif @booking.status == "Valider" %>
+            <p class="status.accepted">Status: <%= @booking.status %></p>
+            <%= link_to 'Annuler', decline_booking_path(@booking), class: "btn btn-warning", method: :patch%>
+          <% elsif @booking.status == "Refuser" %>
+            <p class="status.declined">Status: <%= @booking.status %></p>
+          <% elsif @booking.status == "Annuler" %>
+            <p class="status.declined">Status: <%= @booking.status %></p>
+          <% else @booking.status == "Terminer" %>
+            <p class="status.accepted">Status: <%= @booking.status %></p>
+        </div>
+          <%end%>
       </div>
     </div>
   </div>
@@ -90,8 +108,3 @@
   });
   <% end %>
 <% end %>
-
-
-
-
-
