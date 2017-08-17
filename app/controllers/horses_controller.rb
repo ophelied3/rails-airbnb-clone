@@ -34,11 +34,10 @@ class HorsesController < ApplicationController
     if @horse.save!
       # HorseMailer.creation_confirmation(@horse).deliver_now
       redirect_to @horse
+      flash[:notice] = "Votre annonce a bien été enrengistrée."
     else
       render :new
     end
-
-
   end
 
   def edit
@@ -47,6 +46,7 @@ class HorsesController < ApplicationController
   def update
     if @horse.update(horse_params)
       redirect_to @horse
+      flash[:notice] = "Votre annonce a bien été mis à jour."
     else
       render :edit
     end
@@ -74,7 +74,4 @@ class HorsesController < ApplicationController
   def search_params
     params.require(:search).permit(:race, :address, :begin_date, :final_date)
   end
-
-
-
 end
