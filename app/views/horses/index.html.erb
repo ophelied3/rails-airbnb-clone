@@ -1,8 +1,8 @@
 <%= simple_form_for :search, html: { class: "form-inline"}, url: horses_path, method: :get do |f| %>
-  <%= f.input :address %>
+  <%= f.input :address, label: "Adresse" %>
   <%= f.input :race, collection: Horse.races %>
-  <%= f.input :begin_date, as: :date %>
-  <%= f.input :final_date, as: :date %>
+  <%= f.input :begin_date, as: :date, label: "Date de début" %>
+  <%= f.input :final_date, as: :date, label: "Date de fin" %>
   <%= f.button :submit, class: "btn btn-primary", value: "Rechercher" %>
 <% end %>
 
