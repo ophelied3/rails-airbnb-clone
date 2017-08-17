@@ -31,3 +31,11 @@ Modification du Controller, et des views!
 
 3eme commit [Horses_controller.rb - _search_bar.html.erb]:
 Integration du géocodeur dans nôtre bar de recherche !
+
+Booking Status: [BookingController - Booking_show - User_Show]
+
+1er commit: Initial release, plein de faute d'orthographe, working
+2eme commit: ajout de l'action d'annulation
+3eme commit (Jules): Correction de l'affichage dans le booking show
+4eme commit (Rien a voir avec cette branche) Correction du formulaire d'inscription (date) et du formulaire de booking
+5eme commit: Status automatique pour les bookings terminer !

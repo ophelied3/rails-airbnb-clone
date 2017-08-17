@@ -4,8 +4,8 @@ class Booking < ApplicationRecord
   validates :horse_id, presence: true
   validates :user_id, presence: true
 
-  validates_date :start_date, :after => lambda { Date.today }
-  validates_date :end_date, :after => lambda { :start_date }
+  validates_date :start_date, :after => lambda { Date.today }, :on => :create
+  validates_date :end_date, :after => lambda { :start_date }, :on => :create
 
   def rented?
     Date.today.between?(start_date, end_date)

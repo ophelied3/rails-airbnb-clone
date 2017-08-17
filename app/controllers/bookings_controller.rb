@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_action :find_booking, only: [:show, :set_status_pending, :set_status_accepted, :set_status_decline, :set_status_done]
+  before_action :booking_update
 
   def show
     if current_user == @booking.user || current_user == @booking.horse.user
@@ -66,7 +67,9 @@ class BookingsController < ApplicationController
   end
 
   def booking_update
-    @booking.update
+    Booking.all.each do |booking|
+      booking.mark("Terminer") if booking.end_date == Date.today
+    end
   end
 
   def booking_price
