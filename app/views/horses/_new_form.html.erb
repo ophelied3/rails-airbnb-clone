@@ -7,7 +7,10 @@
         <%= f.input :name, label: "Nom du cheval:" %>
         <%= f.input :address, label: "Où se trouve votre cheval ?" %>
         <%= f.input :description, label: "Décrivez votre cheval" %>
-        <%= f.input :birth_date, label: "Sélectionnez la date de naissance" %>
+        <%= f.input :birth_date, as: :date, start_year: Date.today.year - 40,
+                              end_year: Date.today.year,
+                              order: [:day, :month, :year],
+                              label: "Sélectionnez la date de naissance" %>
         <%= f.input :sexe, collection: ["Hongre", "Etalon", "Jument"]  %>
         <%= f.input :race, collection: Horse.races, prompt: "Choose one", label: "Race" %>
         <%= f.input :disciplines, collection: Horse.disciplines, prompt: "Choose one", label: "Discipline" %>
