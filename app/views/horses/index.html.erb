@@ -6,13 +6,13 @@
       <h1 class= "text-center">Nos beaux chevaux</h1>
         <%= simple_form_for :search, html: {class: "text-center"}, url: horses_path, method: :get do |f| %>
         <div class="form-inline">
-        <%= f.input :address, label: "Adresse" %>
-        <%= f.input :race, collection: Horse.races %>
+          <%= f.input :address, label: "Adresse" %>
+          <%= f.input :race, collection: Horse.races %>
         </div>
         <div class="form-inline">
-        <%= f.input :begin_date, as: :date, label: "Date de début" %>
-        <%= f.input :final_date, as: :date, label: "Date de fin" %>
-        <%= f.button :submit, class: "btn btn-primary", value: "Rechercher" %>
+          <%= f.input :begin_date, as: :date, label: "Date de début" %>
+          <%= f.input :final_date, as: :date, label: "Date de fin" %>
+          <%= f.button :submit, class: "btn btn-primary search-btn", value: "Rechercher" %>
         </div>
       <% end %>
 
