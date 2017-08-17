@@ -57,11 +57,11 @@ ActiveRecord::Schema.define(version: 20170817090816) do
     t.integer  "required_level"
     t.integer  "monthly_price"
     t.integer  "user_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.float    "latitude"
     t.float    "longitude"
-    t.float    "average_rating"
+    t.float    "average_rating", default: 5.0
     t.index ["user_id"], name: "index_horses_on_user_id", using: :btree
   end
 
