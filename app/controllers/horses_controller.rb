@@ -32,10 +32,13 @@ class HorsesController < ApplicationController
   def create
     @horse = current_user.horses.new(horse_params)
     if @horse.save!
+      HorseMailer.creation_confirmation(@horse).deliver_now
       redirect_to @horse
     else
       render :new
     end
+
+
   end
 
   def edit
@@ -65,11 +68,13 @@ class HorsesController < ApplicationController
   end
 
   def horse_params
-    params.require(:horse).permit(:name, :description, :title, :birth_date, :address, :sexe, :race, :disciplines, :character, :required_level, :monthly_price, :horse_pic, photos: [])
+    params.require(:horse).permit(:name, :description, :title, :birth_date, :address, :sexe, :race, :disciplines, :character, :required_level, :monthly_price, :average_rating, :horse_pic, photos: [])
   end
 
   def search_params
     params.require(:search).permit(:race, :address, :begin_date, :final_date)
   end
+
+
 
 end

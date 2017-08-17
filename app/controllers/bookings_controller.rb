@@ -1,6 +1,8 @@
 class BookingsController < ApplicationController
+  before_action :find_booking, only: [:show, :set_status_pending, :set_status_accepted, :set_status_decline, :set_status_done]
+  before_action :booking_update
+
   def show
-    @booking = Booking.find(params[:id])
     if current_user == @booking.user || current_user == @booking.horse.user
       @horse = @booking.horse
     else
@@ -13,6 +15,7 @@ class BookingsController < ApplicationController
     @booking = current_user.bookings.new(booking_params)
     @booking.horse = @horse
     @booking.price = booking_price
+    @booking.status = "En attente"
 
     if @booking.save
       redirect_to @booking
@@ -33,10 +36,40 @@ class BookingsController < ApplicationController
     end
   end
 
+  def set_status_accepted
+    @booking.mark("Valider")
+    redirect_to @booking
+  end
+
+  def set_status_decline
+    @booking.mark("Refuser")
+    redirect_to @booking
+  end
+
+  def set_status_done
+    @booking.mark("Terminer")
+    redirect_to @booking
+  end
+
+  def set_status_canceled
+    @booking.mark("Annuler")
+    redirect_to @booking
+  end
+
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :horse_id, :user_id, :price, :rating)
+    params.require(:booking).permit(:start_date, :end_date, :horse_id, :user_id, :price, :rating, :status)
+  end
+
+  def find_booking
+    @booking = Booking.find(params[:id])
+  end
+
+  def booking_update
+    Booking.all.each do |booking|
+      booking.mark("Terminer") if booking.end_date == Date.today
+    end
   end
 
   def booking_price
