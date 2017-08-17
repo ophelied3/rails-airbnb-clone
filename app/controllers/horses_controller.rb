@@ -69,7 +69,7 @@ class HorsesController < ApplicationController
   end
 
   def horse_params
-    params.require(:horse).permit(:name, :description, :title, :birth_date, :address, :sexe, :race, :disciplines, :character, :required_level, :monthly_price, :horse_pic, photos: [])
+    params.require(:horse).permit(:name, :description, :title, :birth_date, :address, :sexe, :race, :disciplines, :character, :required_level, :monthly_price, :average_rating, :horse_pic, photos: [])
   end
 
   def search(data)
@@ -92,5 +92,7 @@ class HorsesController < ApplicationController
     end
     return horse_search
   end
+
+
 
 end

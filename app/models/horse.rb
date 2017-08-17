@@ -33,6 +33,9 @@ class Horse < ApplicationRecord
     CHARACTERS
   end
 
-
+  def average_rating
+    ratings = self.bookings.map(&:rating).reject{|b| b.nil? }
+    ratings.empty? ? 5 : ratings.sum.to_f / ratings.size
+  end
 
 end

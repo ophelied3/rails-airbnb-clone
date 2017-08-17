@@ -68,6 +68,10 @@
         </div>
         <div class="col-xs-12 col-sm-4">
           <p><strong>Description :</strong> <%= @horse.description %></p>
+          <p><strong> Note moyenne:</strong>
+          <% @horse.average_rating.to_i.times do %>
+            <i class="fa fa-star" aria-hidden="true" id="rating-1"></i>
+          <% end %> <%= (@horse.average_rating) %></p>
         </div>
       </div>
     </div>
