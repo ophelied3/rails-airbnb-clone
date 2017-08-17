@@ -1,6 +1,7 @@
 .login{
   padding-left: 30%;
   padding-right: 30%;
+  background-image: url(app/assets/images/ecurie.jpg);
 }
 
 .login .title {
@@ -12,24 +13,15 @@
   margin-top: 80px;
 }
 
-.login .title span[class*="fontawesome-"] {
-  margin-right: 14px;
-}
-
 .login fieldset {
   background: #fff;
   border-radius: 0 0 20px 20px;
   padding: 20px 26px;
-
 }
 
 .login fieldset label {
   color: #777;
   margin-bottom: 14px;
-}
-
-.login fieldset label:last-child {
-  margin-bottom: 0;
 }
 
 .login fieldset input {
