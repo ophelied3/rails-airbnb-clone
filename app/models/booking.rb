@@ -13,14 +13,14 @@ class Booking < ApplicationRecord
 
   def available?
     if Date.today.between?(start_date, end_date)
-      return false
+      false
     else
-      return true
+      true
     end
   end
 
   def mark(status)
-  self.status = status
-  self.save!
+    self.status = status
+    save!
   end
 end
