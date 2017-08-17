@@ -1,5 +1,4 @@
 .tabs {
-  background: #E84A5F;
   display: flex;
   margin-top: 30px;
   margin-bottom: 30px;
@@ -7,9 +6,13 @@
 }
 
 .tabs a {
+  background-color: $red;
   color: white;
 }
 .tabs a:hover {
+  background: $red;
+  color: white;
+  opacity: 0.5;
   cursor: pointer;
   text-decoration: none;
   opacity: 0.8;
@@ -24,7 +27,7 @@
   margin-bottom: 0;
 }
 .tab {
-  background: #756A66;
+  background: $red;
   flex: 0 0 25%;
   text-align: center;
   padding: 20px 0;
@@ -32,12 +35,12 @@
   padding-left: 40px;
 }
 .tab:first-child {
-  border-radius: 10px 0 0 0;
+  border-radius: 10px;
 }
 .tab:last-child {
-  border-radius: 0 10px 0 0;
+  border-radius: 10px;
 }
 .tab.active {
-  background: white;
-  color: black;
+  color: $red;
+  border-color: $red;
 }
