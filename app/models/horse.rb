@@ -10,7 +10,7 @@ class Horse < ApplicationRecord
      'Trot à poney', 'Amazone', 'Cheval de chasse', 'Doma vaquera', 'Equitation Camargue', 'Equitation de travail', 'Equitation islandaise', 'Equitation portugaise', 'Ski-jöering',
      "Tir à l'arc à cheval"]
 
-  CHARACTERS = ['Vif', 'Calme', 'Joueur', 'Sûr']
+  CHARACTERS = ['Vif', 'Calme', 'Joueur', 'Sûr', 'Charismatique', 'Compétitif', 'Éduqué', 'Énergique', 'Tranquille']
 
   validates :name, :address, :title, :birth_date, presence: true
   validates :sexe, inclusion: { in: %w(Etalon Hongre Jument) }
