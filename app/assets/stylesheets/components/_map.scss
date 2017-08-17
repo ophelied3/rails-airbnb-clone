@@ -1,4 +1,5 @@
 #map {
+  width: 450px;
   height: 100vh;
   position: sticky !important;
   top: 0;
@@ -9,4 +10,8 @@
 .content {
   display: flex;
   align-items: stretch;
+}
+
+.content h1 {
+  font-weight: bold;
 }
