@@ -34,7 +34,7 @@ class BookingsController < ApplicationController
 
     if @booking.update(booking_params)
       redirect_to @booking
-      flash[:notice] = "La mis à jour des informations on bien été prise en compte."
+      flash[:notice] = "La mise-à-jour des informations a bien été prise en compte."
     else
       render :show
     end
