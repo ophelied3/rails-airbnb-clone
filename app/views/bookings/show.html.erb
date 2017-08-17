@@ -31,12 +31,20 @@
           <p>Prix total : <%= @booking.price %> €</p>
         </div>
       </div>
+
       <div class="col-xs-12 col-sm-3">
         <div class="message-status">
           <% if @booking.status == "En attente" && current_user == @booking.horse.user%>
-            <p class="status pending">Status: <%= @booking.status %></p>
-            <%= link_to 'Accepter', accepted_booking_path(@booking), class: "btn btn-success", method: :patch%> - <%= link_to 'Refuser', decline_booking_path(@booking), class: "btn btn-danger", method: :patch%>
-            <%= link_to 'Annuler', decline_booking_path(@booking), class: "btn btn-warning", method: :patch%>
+            <p class="status pending">Statut: <%= @booking.status %></p>
+              <div class="col-xs-12">
+                <%= link_to 'Accepter', accepted_booking_path(@booking), class: "btn btn-success btn-margin", method: :patch%>
+              </div>
+              <div class="col-xs-12">
+               <%= link_to 'Refuser', decline_booking_path(@booking), class: "btn btn-danger btn-margin btn-size", method: :patch%>
+              </div>
+              <div class="col-xs-12">
+                <%= link_to 'Annuler', decline_booking_path(@booking), class: "btn btn-warning btn-margin btn-size", method: :patch%>
+              </div>
           <% elsif @booking.status == "Valider" %>
             <p class="status.accepted">Status: <%= @booking.status %></p>
             <%= link_to 'Annuler', decline_booking_path(@booking), class: "btn btn-warning", method: :patch%>
