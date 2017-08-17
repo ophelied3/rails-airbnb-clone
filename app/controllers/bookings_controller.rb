@@ -17,10 +17,7 @@ class BookingsController < ApplicationController
     @booking.price = booking_price
     @booking.status = "En attente"
 
-    if @horse.required_level > current_user.level
-      flash[:alert] = "Vous n'avez pas le niveau requis pour cette demi-pension"
-      return render 'horses/show'
-    elsif @horse.user == current_user
+    if @horse.user == current_user
       flash[:alert] = "Vous ne pouvez pas réserver votre propre cheval."
       return render 'horses/show'
     elsif @booking.save
