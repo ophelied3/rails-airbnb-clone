@@ -17,7 +17,10 @@ class BookingsController < ApplicationController
     @booking.price = booking_price
     @booking.status = "En attente"
 
-    if @booking.save
+    if @horse.required_level > current_user.level
+      flash[:alert] = "Vous n'avez pas le level requis pour cette demi-pension"
+      return render 'horses/show'
+    elsif @booking.save
       redirect_to @booking
       flash[:notice] = "La demi-pension a bien été réservée."
     else
