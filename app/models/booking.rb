@@ -19,4 +19,8 @@ class Booking < ApplicationRecord
     end
   end
 
+  def mark(status)
+  self.status = status
+  self.save!
+  end
 end
