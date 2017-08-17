@@ -1,7 +1,18 @@
 <%= simple_form_for [horse, booking] do |f| %>
   <p id="top-price">Prix par mois : <span id= "horse_price"><%=  @horse.monthly_price  %></span> €</p>
-  <%= f.input :start_date, label: "Date de début", as: :date, start_year: Date.today.year %>
-  <%= f.input :end_date, label: "Date de fin", as: :date, start_year: Date.today.year  %>
+  <%= f.input :start_date, label: "Date de début", as: :date, start_year: Date.today.year,
+                                                   start_day: Date.today,
+                                                   end_year: Date.today.year + 5,
+                                                   order: [:day, :month, :year],
+                                                   as: :date, start_year: Date.today.year %>
+
+
+  <%= f.input :end_date, label: "Date de fin", as: :date, start_year: Date.today.year,
+                                               end_year: Date.today.year + 5,
+                                               order: [:day, :month, :year],
+                                               as: :date, start_year: Date.today.year %>
+
+
   <p><strong>Nombre de mois :</strong> <span id="days"></span></p>
   <p><strong>Prix total :</strong><span id="price"></span> €</p>
   <%= f.submit class: 'btn btn-primary', value: "Réserver" %>
