@@ -18,7 +18,7 @@ class BookingsController < ApplicationController
     @booking.status = "En attente"
 
     if @horse.required_level > current_user.level
-      flash[:alert] = "Vous n'avez pas le level requis pour cette demi-pension"
+      flash[:alert] = "Vous n'avez pas le niveau requis pour cette demi-pension"
       return render 'horses/show'
     elsif @booking.save
       redirect_to @booking
@@ -34,6 +34,7 @@ class BookingsController < ApplicationController
 
     if @booking.update(booking_params)
       redirect_to @booking
+      flash[:notice] = "La mis à jour des informations on bien été prise en compte."
     else
       render :show
     end
