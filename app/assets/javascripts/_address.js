@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(".horses.index").ready(function() {
   var search_address = $('#search_address').get(0);
 
   if (search_address) {
@@ -10,7 +10,6 @@ $(document).ready(function() {
       }
     });
   }
-});
 
 function onPlaceChanged() {
   var place = this.getPlace();
@@ -20,9 +19,10 @@ function onPlaceChanged() {
 }
 
 
-horse_address
+});
 
-$(document).ready(function() {
+
+$(".horses.new").ready(function() {
   var horse_address = $('#horse_address').get(0);
 
   if (horse_address) {
@@ -34,11 +34,12 @@ $(document).ready(function() {
       }
     });
   }
-});
-
 function onPlaceChanged() {
   var place = this.getPlace();
   var components = getAddressComponents(place);
 
   $('#horse_address').trigger('blur').val(components);
 }
+
+});
+

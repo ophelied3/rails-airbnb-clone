@@ -6,9 +6,7 @@ class HorsesController < ApplicationController
   def index
       if params[:search]
         @horses = Horse.search(search_params)
-                       .order("created_at DESC")
-                       .where
-                       .not(latitude: nil, longitude: nil)
+
       else
         @horses = Horse.all
                        .where
@@ -71,7 +69,7 @@ class HorsesController < ApplicationController
   end
 
   def search_params
-    params.require(:search).permit(:race, :address)
+    params.require(:search).permit(:race, :address, :begin_date, :final_date)
   end
 
 end

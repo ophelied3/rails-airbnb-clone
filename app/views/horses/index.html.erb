@@ -1,17 +1,10 @@
-
-<%#= form_tag(horses_path, :method => "get", id: "search-form") do %>
-    <%#= text_field_tag :race, params[:race], placeholder: "Race" %>
-    <%#= text_field_tag :address, params[:address], placeholder: "Address" %>
-    <%#= submit_tag "Search", :name => nil %>
-<%# end %>
-
-<%= simple_form_for :search, url: horses_path, method: :get do |f| %>
+<%= simple_form_for :search, html: { class: "form-inline"}, url: horses_path, method: :get do |f| %>
   <%= f.input :address %>
   <%= f.input :race, collection: Horse.races %>
-  <%= f.button :submit %>
+  <%= f.input :begin_date, as: :date %>
+  <%= f.input :final_date, as: :date %>
+  <%= f.button :submit, class: "btn btn-primary", value: "Rechercher" %>
 <% end %>
-
-
 
 <div class="content">
   <div class="container">
