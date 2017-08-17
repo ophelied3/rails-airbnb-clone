@@ -1,0 +1,69 @@
+.login{
+  padding-left: 30%;
+  padding-right: 30%;
+}
+
+
+
+.login .title {
+  background: #E84A5F;
+  border-radius: 20px 20px 0 0;
+  color: #fff;
+  font-size: 28px;
+  padding: 20px 26px;
+  margin-top: 80px;
+}
+
+.login .title span[class*="fontawesome-"] {
+  margin-right: 14px;
+}
+
+.login fieldset {
+  background: #fff;
+  border-radius: 0 0 20px 20px;
+  padding: 20px 26px;
+
+}
+
+.login fieldset label {
+  color: #777;
+  margin-bottom: 14px;
+}
+
+.login fieldset label:last-child {
+  margin-bottom: 0;
+}
+
+.login fieldset input {
+  border-radius: 3px;
+}
+
+.login fieldset input[type="email"], #login fieldset input[type="password"] {
+  background: #eee;
+  color: #777;
+  padding: 4px 10px;
+  width: 100%;
+}
+
+.login fieldset input[type="submit"] {
+  background: #33cc77;
+  color: #fff;
+  display: block;
+  margin: 0 auto;
+  padding: 4px 0;
+  width: 100px;
+}
+
+.login fieldset input[type="submit"]:hover {
+  background: #28ad63;
+}
+
+.btn-design{
+  margin-bottom: 20px;
+}
+
+.links{
+  margin-top: 20px;
+  color: #777;
+  margin-bottom: 14px;
+}
