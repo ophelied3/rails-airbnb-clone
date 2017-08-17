@@ -33,6 +33,19 @@ class Horse < ApplicationRecord
     CHARACTERS
   end
 
+  def self.search(params)
+
+    horses = Horse.all
+
+    if params[:race].present?
+      horses = horses.where(race: params[:race])
+    end
+
+    if params[:address].present?
+      horses = horses.near(params[:address], 20)
+    end
+    horses
+  end
 
 
 end

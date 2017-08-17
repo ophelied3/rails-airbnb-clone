@@ -5,7 +5,7 @@
       <div class="form-boite">
         <h3 class="text-center">Présentez votre cheval</h3>
         <%= f.input :name, label: "Nom du cheval:" %>
-        <%= f.input :address, label: "Où se trouve votre cheval ?" %>
+        <%= f.input :address, label: "Où se trouve votre cheval ?", id: "_horses_location" %>
         <%= f.input :description, label: "Décrivez votre cheval" %>
         <%= f.input :birth_date, label: "Sélectionnez la date de naissance" %>
         <%= f.input :sexe, collection: ["Hongre", "Etalon", "Jument"]  %>
@@ -24,7 +24,7 @@
     </div>
     <div class="text-center">
       <%= f.input :horse_pic, as: :attachinary %>
-      <%= f.button :submit, class:"btn btn-primary", value: "Ajouter" %>
+      <%= f.button :submit, class: "btn btn-primary", value: "Ajouter" %>
     </div>
   <% end %>
 </div>
