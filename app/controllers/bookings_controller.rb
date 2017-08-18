@@ -18,8 +18,8 @@ class BookingsController < ApplicationController
     @booking.status = 'En attente'
 
     if @horse.user == current_user
-      flash[:alert] = 'Vous ne pouvez pas réserver votre propre cheval.'
       return render 'horses/show'
+      flash[:alert] = 'Vous ne pouvez pas réserver votre propre cheval.'
     elsif @booking.save
       respond_to do |format|
         format.html {
