@@ -30,7 +30,11 @@
         <% end %>
       <% end %>
     </div>
-    <%= paginate @horses %>
+    <div class="pagination-box">
+      <div class="text-center">
+        <%= paginate @horses, :exclude => [:first, :last] %>
+      </div>
+    </div>
   </div>
   <div id="map"></div>
 </div>

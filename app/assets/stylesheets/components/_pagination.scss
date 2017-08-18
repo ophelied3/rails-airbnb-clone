@@ -1,0 +1,36 @@
+.pagination-box {
+  height: 100px;
+  padding: 25px;
+  margin: 15px;
+  text-decoration: none;
+  font-size: 35px;
+  color: $red;
+}
+
+.pagination-box a {
+  font-size: 25px;
+  color: grey;
+  padding: 10px;
+
+}
+
+.pagination-box a:active {
+  font-size: 25px;
+  color: $red;
+  padding: 10px;
+
+}
+
+.pagination-box a:hover {
+  font-size: 25px;
+  color: $red;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.current {
+  border: 3px $red solid;
+  border-radius: 15px;
+  padding: 3px 7px 5px 16px;
+  margin: 2px;
+}
