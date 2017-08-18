@@ -1,10 +1,10 @@
-<h4 class ="text-center">Mes chevaux </h4>
-
 <div class ="container">
+  <h4 class ="text-center">Mes chevaux </h4>
   <div class="row">
     <% @horses.each do |horse| %>
     <div class="col-xs-12 col-sm-4">
       <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path horse.horse_pic.path %>')">
+        <div class="card-category"></div>
         <div class="card-description">
         <h2> <%= horse.name %> </h2>
         </div>
@@ -13,4 +13,21 @@
     </div>
     <% end %>
   </div>
+  <% unless @horses_booked.empty? %>
+    <h4 class ="text-center">Mes chevaux reservés </h4>
+    <div class="row">
+      <% @horses_booked.each do |booking| %>
+      <div class="col-xs-12">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path booking.horse.horse_pic.path %>')">
+          <div class="card-category"><%= booking.status %></div>
+          <div class="card-description">
+          <h2> <%= booking.horse.name %> </h2>
+          <p>Reservation du <%= booking.start_date %>, au <%= booking.end_date %>
+          </div>
+          <%= link_to "", booking, class:"card-link"%>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
