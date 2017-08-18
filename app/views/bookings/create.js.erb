@@ -1,0 +1,5 @@
+<% if @booking.errors.any? %>
+  $('#new_booking').html("<%= j render 'bookings/form', horse: @horse, booking: @booking %>");
+<% else %>
+  window.location.replace("<%= booking_path(@booking) %>");
+<% end %>
