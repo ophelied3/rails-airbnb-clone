@@ -1,6 +1,7 @@
 class Horse < ApplicationRecord
   belongs_to :user
   has_many :bookings
+  has_many :discplines
 
   RACES = [
     'Trotteur Français', 'Selle français', 'Pur-sang arabe', 'Anglo-Arabe', 'Cheval de Sport', 'Anglo-Normand', 'Camargue', 'Mérens', 'Lusitanien', 'Quarter Horse', 'Paint Horse', 'Barbe', 'Appaloosa', 'Islandais', 'Lipizzan', 'Shagya', 'Henson', 'Crème', 'Castillonnais',
