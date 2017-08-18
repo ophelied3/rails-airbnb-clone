@@ -25,6 +25,10 @@
   margin-top: 50px;
 }
 
+.header-details{
+  margin-top: 65px;
+}
+
 
 .header-details h2 {
   color: #2A363B;
@@ -64,5 +68,15 @@ h3.horse-description {
 
 .bouton {
   margin-top: 45px;
+}
+
+.user{
+  padding-left: 160px;
+  display: flex;
+  align-items: center;
+}
+
+#name{
+  margin-left: 15px;
 }
 
