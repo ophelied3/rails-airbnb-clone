@@ -81,13 +81,18 @@
 
 
 
-
- <div class="morephotos">
-  <% @horse.photos.each do |photo| %>
-    <a href="<%= cl_image_path(photo.path, size: '25x25') %>" class="swipebox swipebox-size" title="My Caption">
-    <%= cl_image_tag(photo.path) %>
-    </a>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="morephotos">
+        <% @horse.photos.each do |photo| %>
+          <a href="<%= cl_image_path(photo.path, size: '25x25') %>" class="swipebox swipebox-size" title="My Caption">
+          <%= cl_image_tag(photo.path, size: '250x250', crop: :thumb) %>
+          </a>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
 
 
