@@ -4,15 +4,15 @@ class HorsesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-      if params[:search]
-        @horses = Horse.search(search_params)
+    if params[:search]
+      @horses = Horse.search(search_params)
 
-      else
-        @horses = Horse.all
-                       .where
-                       .not(latitude: nil, longitude: nil)
-                       .order("created_at DESC")
-      end
+    else
+      @horses = Horse.all
+                     .where
+                     .not(latitude: nil, longitude: nil)
+                     .order('created_at DESC')
+    end
 
     @hash = Gmaps4rails.build_markers(@horses) do |horse, marker|
       marker.lat horse.latitude
@@ -34,19 +34,18 @@ class HorsesController < ApplicationController
     if @horse.save!
       # HorseMailer.creation_confirmation(@horse).deliver_now
       redirect_to @horse
-      flash[:notice] = "Votre annonce a bien été enrengistrée."
+      flash[:notice] = 'Votre annonce a bien été enrengistrée.'
     else
       render :new
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @horse.update(horse_params)
       redirect_to @horse
-      flash[:notice] = "Votre annonce a bien été mis à jour."
+      flash[:notice] = 'Votre annonce a bien été mis à jour.'
     else
       render :edit
     end

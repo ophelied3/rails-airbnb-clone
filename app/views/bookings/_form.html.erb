@@ -1,7 +1,7 @@
 <%= simple_form_for [horse, booking] do |f| %>
   <p id="top-price">Prix par mois : <span id= "horse_price"><%=  @horse.monthly_price  %></span> €</p>
   <%= f.input :start_date, label: "Date de début", as: :date, start_year: Date.today.year,
-                                                   start_day: Date.tomorrow,
+                                                   start_day: Date.today + 1,
                                                    end_year: Date.today.year + 5,
                                                    order: [:day, :month, :year] %>
 

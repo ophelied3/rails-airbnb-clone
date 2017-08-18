@@ -10,10 +10,10 @@ class Horse < ApplicationRecord
      'Trot à poney', 'Amazone', 'Cheval de chasse', 'Doma vaquera', 'Equitation Camargue', 'Equitation de travail', 'Equitation islandaise', 'Equitation portugaise', 'Ski-jöering',
      "Tir à l'arc à cheval"]
 
-  CHARACTERS = ['Vif', 'Calme', 'Joueur', 'Sûr', 'Charismatique', 'Compétitif', 'Éduqué', 'Énergique', 'Tranquille']
+  CHARACTERS = %w[Vif Calme Joueur Sûr Charismatique Compétitif Éduqué Énergique Tranquille]
 
   validates :name, :address, :title, :birth_date, presence: true
-  validates :sexe, inclusion: { in: %w(Etalon Hongre Jument) }
+  validates :sexe, inclusion: { in: %w[Etalon Hongre Jument] }
   validates :race, inclusion: { in: RACES }
   validates :disciplines, inclusion: { in: DISCIPLINES }
   validates :character, inclusion: { in: CHARACTERS }
@@ -38,27 +38,19 @@ class Horse < ApplicationRecord
   end
 
   def self.search(params)
-
     horses = Horse.all
-    begin_date = Date.new(params["begin_date(1i)"].to_i, params["begin_date(2i)"].to_i, params["begin_date(3i)"].to_i)
-    final_date = Date.new(params["final_date(1i)"].to_i, params["final_date(2i)"].to_i, params["final_date(3i)"].to_i)
+    begin_date = Date.new(params['begin_date(1i)'].to_i, params['begin_date(2i)'].to_i, params['begin_date(3i)'].to_i)
+    final_date = Date.new(params['final_date(1i)'].to_i, params['final_date(2i)'].to_i, params['final_date(3i)'].to_i)
 
-    if params[:race].present?
-      horses = horses.where(race: params[:race])
-    end
+    horses = horses.where(race: params[:race]) if params[:race].present?
+    horses = horses.near(params[:address], 20) if params[:address].present?
 
-    if params[:address].present?
-      horses = horses.near(params[:address], 20)
-    end
-
-    horses = horses.joins(:bookings).where.not('(start_date BETWEEN ? AND ? OR end_date BETWEEN ? AND ?) OR (start_date <= ? AND end_date >= ?)', begin_date, final_date, begin_date, final_date, begin_date, final_date) + horses.left_outer_joins(:bookings).where( bookings: { id: nil } )
-
+    horses = horses.joins(:bookings).where.not('(start_date BETWEEN ? AND ? OR end_date BETWEEN ? AND ?) OR (start_date <= ? AND end_date >= ?)', begin_date, final_date, begin_date, final_date, begin_date, final_date) + horses.left_outer_joins(:bookings).where(bookings: { id: nil })
     horses
   end
 
   def average_rating
-    ratings = self.bookings.map(&:rating).reject{|b| b.nil? }
+    ratings = bookings.map(&:rating).reject(&:nil?)
     ratings.empty? ? 5 : ratings.sum.to_f / ratings.size
   end
-
 end
