@@ -41,7 +41,7 @@ class Horse < ApplicationRecord
   end
 
   def self.search(params)
-    horses = Horse.page
+    horses = Horse.all
     begin_date = Date.new(params['begin_date(1i)'].to_i, params['begin_date(2i)'].to_i, params['begin_date(3i)'].to_i)
     final_date = Date.new(params['final_date(1i)'].to_i, params['final_date(2i)'].to_i, params['final_date(3i)'].to_i)
 
@@ -49,7 +49,7 @@ class Horse < ApplicationRecord
     horses = horses.near(params[:address], 20) if params[:address].present?
 
     horses = horses.joins(:bookings).where.not('(start_date BETWEEN ? AND ? OR end_date BETWEEN ? AND ?) OR (start_date <= ? AND end_date >= ?)', begin_date, final_date, begin_date, final_date, begin_date, final_date) + horses.left_outer_joins(:bookings).where(bookings: { id: nil })
-    Kaminari.paginate_array(horses).page(params[:page]).per(10)
+    horses
   end
 
   def average_rating
