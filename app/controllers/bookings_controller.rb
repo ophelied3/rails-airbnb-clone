@@ -86,6 +86,6 @@ class BookingsController < ApplicationController
 
   def booking_price
     month_num = (@booking.end_date - @booking.start_date) / 30
-    @horse.monthly_price * month_num.to_i
+    @horse.monthly_price * month_num.to_f.round(2)
   end
 end
