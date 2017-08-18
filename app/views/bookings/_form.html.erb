@@ -1,4 +1,4 @@
-<%= simple_form_for [horse, booking] do |f| %>
+<%= simple_form_for([horse, booking], remote: true) do |f| %>
   <p id="top-price">Prix par mois : <span id= "horse_price"><%=  @horse.monthly_price  %></span> €</p>
   <%= f.input :start_date, label: "Date de début", as: :date, start_year: Date.today.year,
                                                    start_day: Date.today + 1,
