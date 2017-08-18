@@ -11,6 +11,7 @@ require "action_view/railtie"
 require "action_cable/engine"
 require "sprockets/railtie"
 require "attachinary/orm/active_record"
+require "swipebox"
 # require "rails/test_unit/railtie"
 
 
