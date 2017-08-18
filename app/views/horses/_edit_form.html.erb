@@ -4,7 +4,7 @@
     <div class="form-group">
       <div class="form-boite">
         <h3 class="text-center">Présentez votre cheval</h3>
-        <%= f.input :name, label: "Nom du cheval:" %>
+        <%= f.input :name, label: "Nom du cheval" %>
         <%= f.input :address, label: "Où se trouve votre cheval ?", id: "_horses_location" %>
         <%= f.input :description, label: "Décrivez votre cheval" %>
         <%= f.input :birth_date, as: :date, start_year: Date.today.year - 40,
@@ -21,13 +21,13 @@
       <div class="form-boite">
         <h3 class="text-center">Quelques infos sur votre annonce</h3>
           <%= f.input :title, label: "Donnez un nom à votre annonce" %>
-          <%= f.input :monthly_price, label: "Tarif de l'abonnement" %>
+          <%= f.input :monthly_price, label: "Tarif de la demi-pension" %>
           <%= f.input :required_level, label: "Niveau requis" %>
       </div>
     </div>
     <div class="text-center">
       <%= f.input :horse_pic, as: :attachinary %>
-      <%= f.input :photos, as: :attachinary, label: "Ajouter jusqu'a 5 photos supplementaire:" %>
+      <%= f.input :photos, as: :attachinary, label: "Ajouter jusqu'à 5 photos supplémentaires" %>
       <%= f.button :submit, class: "btn btn-primary", value: "Ajouter" %>
     </div>
   <% end %>
