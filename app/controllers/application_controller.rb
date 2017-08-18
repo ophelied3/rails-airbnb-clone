@@ -1,3 +1,4 @@
+# app/controllers/application_controller.rb
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
@@ -9,6 +10,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name birth_date sexe level photo])
     # For additional in app/views/devise/registrations/edit.html.erb
     devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name birth_date sexe level photo])
+  end
+
+  def default_url_options
+    { host: ENV['HOST'] || 'localhost:3000' }
   end
 
   private
