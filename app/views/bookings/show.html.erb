@@ -34,8 +34,8 @@
 
       <div class="col-xs-12 col-sm-3">
         <div class="message-status">
-          <% if @booking.status == "En attente" && current_user == @booking.horse.user%>
-            <p class="status pending">Statut: <%= @booking.status %></p>
+          <% if @booking.status == "En attente" && current_user == @booking.horse.user %>
+            <p class="status pending">Statut : <%= @booking.status %></p>
               <div class="col-xs-12">
                 <%= link_to 'Accepter', accepted_booking_path(@booking), class: "btn btn-success btn-margin", method: :patch%>
               </div>
@@ -45,17 +45,20 @@
               <div class="col-xs-12">
                 <%= link_to 'Annuler', decline_booking_path(@booking), class: "btn btn-warning btn-margin btn-size", method: :patch%>
               </div>
+          <% elsif @booking.status == "En attente" && current_user == @booking.user %>
+            <p class="status pending">Statut : <%= @booking.status %></p>
+            <p><%= link_to 'Annuler', decline_booking_path(@booking), class: "btn btn-warning btn-margin btn-size", method: :patch%></p>
           <% elsif @booking.status == "Valider" %>
-            <p class="status.accepted">Status: <%= @booking.status %></p>
+            <p class="status.accepted">Statut : <%= @booking.status %></p>
             <%= link_to 'Annuler', decline_booking_path(@booking), class: "btn btn-warning", method: :patch%>
           <% elsif @booking.status == "Refuser" %>
-            <p class="status.declined">Status: <%= @booking.status %></p>
+            <p class="status.declined">Statut : <%= @booking.status %></p>
           <% elsif @booking.status == "Annuler" %>
-            <p class="status.declined">Status: <%= @booking.status %></p>
+            <p class="status.declined">Statut : <%= @booking.status %></p>
           <% else @booking.status == "Terminer" %>
-            <p class="status.accepted">Status: <%= @booking.status %></p>
+            <p class="status.accepted">Statut : <%= @booking.status %></p>
         </div>
-          <%end%>
+          <% end %>
       </div>
     </div>
   </div>
