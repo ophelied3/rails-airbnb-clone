@@ -26,6 +26,7 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'validates_timeliness', '~> 4.0'
 gem 'kaminari'
+gem 'bootstrap-datepicker-rails'
 
 gem 'cloudinary'
 gem 'attachinary', github: 'assembler/attachinary'

@@ -7,8 +7,11 @@
         <%= f.input :address, label: "Adresse" %>
         <%= f.input :race, collection: Horse.races %>
       </div>
+
+
+
       <div class="form-inline">
-        <%= f.input :begin_date, as: :date, label: "Date de début" %>
+        <%= f.input :begin_date, as: :string, label: "Date de début", input_html: {class: "datepicker"}  %>
         <%= f.input :final_date, as: :date, label: "Date de fin" %>
         <%= f.button :submit, class: "btn btn-primary search-btn", value: "Rechercher" %>
       </div>
