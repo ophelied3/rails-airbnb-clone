@@ -41,7 +41,7 @@ class Horse < ApplicationRecord
   end
 
   def self.search(params)
-    horses = Horse.page.per(10)
+    horses = Horse.page
     begin_date = Date.new(params['begin_date(1i)'].to_i, params['begin_date(2i)'].to_i, params['begin_date(3i)'].to_i)
     final_date = Date.new(params['final_date(1i)'].to_i, params['final_date(2i)'].to_i, params['final_date(3i)'].to_i)
 

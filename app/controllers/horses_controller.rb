@@ -4,7 +4,7 @@ class HorsesController < ApplicationController
 
   def index
     if params[:search]
-      @horses = Horse.search(search_params)
+      @horses = Horse.search(search_params).per(10)
 
     else
       @horses = Horse.page(params[:page]).per(10)
