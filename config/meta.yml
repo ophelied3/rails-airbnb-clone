@@ -1,0 +1,6 @@
+# config/meta.yml
+
+meta_product_name: "Cavalira"
+meta_title: "Cavalira - Trouver une demi-pension"
+meta_description: "Trouver une demi-pension n'aura jamais été aussi simple"
+meta_image: "logo.png"                           # Une image dans votre dossier app/assets/images
