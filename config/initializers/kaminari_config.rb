@@ -6,7 +6,7 @@ Kaminari.configure do |config|
   # config.outer_window = 0
   # config.left = 0
   # config.right = 0
- config.page_method_name = false
- config.param_name = false
+  #config.page_method_name = false
+  #config.param_name = false
   # config.params_on_first_page = false
 end
