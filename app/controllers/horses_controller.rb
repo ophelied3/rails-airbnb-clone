@@ -8,7 +8,7 @@ class HorsesController < ApplicationController
       @horses = Horse.search(search_params)
 
     else
-      @horses = Horse.all
+      @horses = Horse.page(params[:page]).per(10)
                      .where
                      .not(latitude: nil, longitude: nil)
                      .order('created_at DESC')
