@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :find_booking, only: [:show, :set_status_pending, :set_status_accepted, :set_status_decline, :set_status_done]
+  before_action :find_booking, only: %i[show set_status_pending set_status_accepted set_status_decline set_status_done]
   before_action :booking_update
 
   def show

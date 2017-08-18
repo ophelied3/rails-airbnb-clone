@@ -1,7 +1,6 @@
 class HorsesController < ApplicationController
-  before_action :find_horse, only: [:show, :edit, :update, :destroy]
-  before_action :all_horse, only: [:index]
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :find_horse, only: %i[show edit update destroy]
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
     if params[:search]
@@ -60,10 +59,6 @@ class HorsesController < ApplicationController
 
   def find_horse
     @horse = Horse.find(params[:id])
-  end
-
-  def all_horse
-    @horses = Horse.all
   end
 
   def horse_params
