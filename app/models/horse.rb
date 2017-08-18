@@ -4,16 +4,37 @@ class Horse < ApplicationRecord
   has_many :discplines
 
   RACES = [
-    'Trotteur Français', 'Selle français', 'Pur-sang arabe', 'Anglo-Arabe', 'Cheval de Sport', 'Anglo-Normand', 'Camargue', 'Mérens', 'Lusitanien', 'Quarter Horse', 'Paint Horse', 'Barbe', 'Appaloosa', 'Islandais', 'Lipizzan', 'Shagya', 'Henson', 'Crème', 'Castillonnais',
-     'Trakehner', 'Frison', 'Akhal-Teke', 'AQPS', 'Cheval Corse', 'Cheval de race Auvergne', 'Poney français de selle', 'Shetland', 'Pottok', 'Connemara', 'Welsh', 'Haflinger', 'Fjord', 'New Forest', 'Landais', 'Dartmoor', 'Highland', 'Comtois', 'Breton', 'Percheron',
-     'Ardennais','Cob normand', 'Boulonnais', 'Auxois', 'Poitevin', 'Trait du nord', 'Franches Montagnes', 'Baudet du Poitou', 'Ane du Cotentin', 'Ane de provence', 'Ane des Pyrénées', 'Ane normand', 'Ane grand noir du Berry', 'Ane Boubonnais'
-   ].freeze
+    'Trotteur Français', 'Selle français', 'Pur-sang arabe',
+    'Anglo-Arabe', 'Cheval de Sport', 'Anglo-Normand',
+    'Camargue', 'Mérens', 'Lusitanien',
+    'Quarter Horse', 'Paint Horse', 'Barbe',
+    'Appaloosa', 'Islandais', 'Lipizzan',
+    'Shagya', 'Henson', 'Crème',
+    'Castillonnais', 'Trakehner', 'Frison',
+    'Akhal-Teke', 'AQPS', 'Cheval Corse',
+    'Cheval de race Auvergne', 'Poney français de selle', 'Shetland',
+    'Pottok', 'Connemara', 'Welsh',
+    'Haflinger', 'Fjord', 'New Forest',
+    'Landais', 'Dartmoor', 'Highland',
+    'Comtois', 'Breton', 'Percheron',
+    'Ardennais', 'Cob normand', 'Boulonnais',
+    'Auxois', 'Poitevin', 'Trait du nord',
+    'Franches Montagnes', 'Baudet du Poitou', 'Ane du Cotentin',
+    'Ane de provence', 'Ane des Pyrénées', 'Ane normand',
+    'Ane grand noir du Berry', 'Ane Boubonnais'
+          ].freeze
 
-  DISCIPLINES = ['CCE', 'CSO', 'Dressage', 'Endurance', 'Endurance en attelage', 'Equifeel', 'Equifun', 'Horse-ball',  'Hunter', 'Paddock Polo', 'Paraéquestre', 'Poneys', 'Pony-Games', 'TREC', 'TREC en attelage', 'Travail à pied', 'Voltige', 'Western', 'Courses de galop à poney',
-     'Trot à poney', 'Amazone', 'Cheval de chasse', 'Doma vaquera', 'Equitation Camargue', 'Equitation de travail', 'Equitation islandaise', 'Equitation portugaise', 'Ski-jöering',
-     "Tir à l'arc à cheval"].freeze
+  DISCIPLINES = [
+    'CCE', 'CSO', 'Dressage', 'Endurance', 'Endurance en attelage',
+    'Equifeel', 'Equifun', 'Horse-ball', 'Hunter', 'Paddock Polo',
+    'Paraéquestre', 'Poneys', 'Pony-Games', 'TREC', 'TREC en attelage',
+    'Travail à pied', 'Voltige', 'Western', 'Courses de galop à poney',
+    'Trot à poney', 'Amazone', 'Cheval de chasse', 'Doma vaquera',
+    'Equitation Camargue', 'Equitation de travail', 'Equitation islandaise',
+    'Equitation portugaise', 'Ski-jöering', "Tir à l'arc à cheval"
+                ].freeze
 
-  CHARACTERS = %w[Vif Calme Joueur Sûr Charismatique Compétitif Éduqué Énergique Tranquille]
+  CHARACTERS = (%w[Vif Calme Joueur Sûr Charismatique Compétitif Éduqué Énergique Tranquille]).freeze
 
   validates :name, :address, :title, :birth_date, presence: true
   validates :sexe, inclusion: { in: %w[Etalon Hongre Jument] }

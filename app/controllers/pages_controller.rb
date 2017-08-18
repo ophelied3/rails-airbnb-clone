@@ -5,6 +5,5 @@ class PagesController < ApplicationController
     @horses = Horse.all.sample(6)
   end
 
-  def team
-  end
+  def team; end
 end
