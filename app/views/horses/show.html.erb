@@ -30,7 +30,7 @@
               <% else %>
               <%= image_tag @horse.user.facebook_picture_url, id: "user_pic", class: "avatar-extralarge" %>
               <% end %>
-              <h2><%= @horse.user.first_name %></h2>
+              <h2 id="name"><%= @horse.user.first_name %></h2>
             </div>
             <div class="address">
               <h3><i class="fa fa-map-marker" aria-hidden="true"></i>    <%= @horse.address %></h3>
