@@ -9,6 +9,7 @@
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
+
   <body  class="<%= controller_name %> <%= action_name %>">
     <% if flash[:notice] %>
       <div class="alert alert-info fade in">

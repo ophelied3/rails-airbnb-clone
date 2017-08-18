@@ -1,14 +1,13 @@
 class HorsesController < ApplicationController
-  before_action :find_horse, only: [:show, :edit, :update, :destroy]
-  before_action :all_horse, only: [:index]
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :find_horse, only: %i[show edit update destroy]
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
     if params[:search]
       @horses = Horse.search(search_params)
 
     else
-      @horses = Horse.all
+      @horses = Horse.page(params[:page]).per(10)
                      .where
                      .not(latitude: nil, longitude: nil)
                      .order('created_at DESC')
@@ -60,10 +59,6 @@ class HorsesController < ApplicationController
 
   def find_horse
     @horse = Horse.find(params[:id])
-  end
-
-  def all_horse
-    @horses = Horse.all
   end
 
   def horse_params
