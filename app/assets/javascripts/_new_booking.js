@@ -9,9 +9,9 @@
 
       var begin = new Date(year_begin, month_begin - 1, day_begin)
       var end = new Date(year_end, month_end - 1, day_end)
-      var number = Math.round(((end - begin) * 1.15741e-8) / 30)
+      var number = ((end - begin) * 1.15741e-8) / 30
 
-      document.getElementById('days').innerHTML = number
-      document.getElementById('price').innerHTML = number * Number(document.getElementById('horse_price').innerHTML)
+      document.getElementById('days').innerHTML = number.toFixed(2)
+      document.getElementById('price').innerHTML = (number * Number(document.getElementById('horse_price').innerHTML)).toFixed(2)
     });
 

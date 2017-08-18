@@ -21,10 +21,18 @@ class BookingsController < ApplicationController
       flash[:alert] = 'Vous ne pouvez pas réserver votre propre cheval.'
       return render 'horses/show'
     elsif @booking.save
-      redirect_to @booking
-      flash[:notice] = 'La demande de demi-pension a bien été envoyée au propriétaire.'
+      respond_to do |format|
+        format.html {
+          redirect_to @booking
+          flash[:notice] = 'La demande de demi-pension a bien été envoyée au propriétaire.'
+        }
+        format.js
+      end
     else
-      render 'horses/show'
+      respond_to do |format|
+        format.html { render 'horses/show' }
+        format.js
+      end
     end
   end
 
