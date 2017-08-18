@@ -4,4 +4,7 @@ class PagesController < ApplicationController
   def home
     @horses = Horse.all.sample(3)
   end
+
+  def team
+  end
 end
