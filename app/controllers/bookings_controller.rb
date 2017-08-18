@@ -15,14 +15,14 @@ class BookingsController < ApplicationController
     @booking = current_user.bookings.new(booking_params)
     @booking.horse = @horse
     @booking.price = booking_price
-    @booking.status = "En attente"
+    @booking.status = 'En attente'
 
     if @horse.user == current_user
-      flash[:alert] = "Vous ne pouvez pas réserver votre propre cheval."
+      flash[:alert] = 'Vous ne pouvez pas réserver votre propre cheval.'
       return render 'horses/show'
     elsif @booking.save
       redirect_to @booking
-      flash[:notice] = "La demande de demi-pension a bien été envoyée au propriétaire."
+      flash[:notice] = 'La demande de demi-pension a bien été envoyée au propriétaire.'
     else
       render 'horses/show'
     end
@@ -34,29 +34,29 @@ class BookingsController < ApplicationController
 
     if @booking.update(booking_params)
       redirect_to @booking
-      flash[:notice] = "La mise-à-jour des informations a bien été prise en compte."
+      flash[:notice] = 'La mise-à-jour des informations a bien été prise en compte.'
     else
       render :show
     end
   end
 
   def set_status_accepted
-    @booking.mark("Valider")
+    @booking.mark('Valider')
     redirect_to @booking
   end
 
   def set_status_decline
-    @booking.mark("Refuser")
+    @booking.mark('Refuser')
     redirect_to @booking
   end
 
   def set_status_done
-    @booking.mark("Terminer")
+    @booking.mark('Terminer')
     redirect_to @booking
   end
 
   def set_status_canceled
-    @booking.mark("Annuler")
+    @booking.mark('Annuler')
     redirect_to @booking
   end
 
@@ -72,7 +72,7 @@ class BookingsController < ApplicationController
 
   def booking_update
     Booking.all.each do |booking|
-      booking.mark("Terminer") if booking.end_date == Date.today
+      booking.mark('Terminer') if booking.end_date == Date.today
     end
   end
 

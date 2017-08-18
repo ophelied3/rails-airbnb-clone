@@ -24,15 +24,13 @@ class User < ApplicationRecord
       user.update(user_params)
     else
       user = User.new(user_params)
-      user.password = Devise.friendly_token[0,20]  # Fake password for validation
+      user.password = Devise.friendly_token[0, 20] # Fake password for validation
       user.save
     end
-
-    return user
+    user
   end
 
   def send_welcome_email
     UserMailer.welcome(self).deliver_now
   end
-
 end
